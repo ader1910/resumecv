@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
 import Input from "../../../components/Inputs/Input";
 import { Plus, Trash2 } from "lucide-react";
-import RatingInput from '../../../components/ResumeSections/RatingInput';
+import RatingInput from "../../../components/ResumeSections/RatingInput";
 
-const SkillsInfoForm = ({skillsInfo, updateArrayItem, addArrayItem, removeArrayItem}) => {
+const SkillsInfoForm = ({
+  skillsInfo,
+  updateArrayItem,
+  addArrayItem,
+  removeArrayItem,
+}) => {
   return (
     <div className="px-5 pt-3">
-      <h2 className="text-lg font-semibold text-gray-900">Skills</h2>
+      <h2 className="text-lg font-semibold text-gray-900">Keahlian</h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {skillsInfo.map((skill, index) => (
@@ -16,19 +21,18 @@ const SkillsInfoForm = ({skillsInfo, updateArrayItem, addArrayItem, removeArrayI
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Skill Name"
-                placeholder="JavaScript"
+                label="Skill Keahlian"
+                placeholder="Videographer"
                 type="text"
                 value={skill.name || ""}
-                onChange={
-                  ({ target }) =>
+                onChange={({ target }) =>
                   updateArrayItem(index, "name", target.value)
                 }
               />
 
               <div className="flex flex-col">
                 <label className="text-[13px] text-slate-800 mb-1">
-                  Proficiency ({skill.progress / 20 || 0}/5)
+                  Presentase ({skill.progress / 20 || 0}/5)
                 </label>
                 <div className="mt-5">
                   <RatingInput
@@ -63,11 +67,11 @@ const SkillsInfoForm = ({skillsInfo, updateArrayItem, addArrayItem, removeArrayI
             })
           }
         >
-          <Plus /> Add Skill
+          <Plus /> Tambahkan Keteranmpilan
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkillsInfoForm
+export default SkillsInfoForm;

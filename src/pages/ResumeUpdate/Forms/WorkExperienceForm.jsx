@@ -20,8 +20,8 @@ const WorkExperienceForm = ({
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Company"
-                placeholder="ABC Corp"
+                label="Perusahaan"
+                placeholder="Agency/Corp"
                 type="text"
                 value={experience.company || ""}
                 onChange={({ target }) =>
@@ -30,8 +30,8 @@ const WorkExperienceForm = ({
               />
 
               <Input
-                label="Role"
-                placeholder="Frontend Developer"
+                label="Sebagai"
+                placeholder="Staff Manager"
                 type="text"
                 value={experience.role || ""}
                 onChange={({ target }) =>
@@ -40,7 +40,7 @@ const WorkExperienceForm = ({
               />
 
               <Input
-                label="Start Date"
+                label="Mulai Bulan"
                 type="month"
                 value={experience.startDate || ""}
                 onChange={({ target }) =>
@@ -49,7 +49,7 @@ const WorkExperienceForm = ({
               />
 
               <Input
-                label="End Date"
+                label="Sampai Bulan"
                 type="month"
                 value={experience.endDate || ""}
                 onChange={({ target }) =>
@@ -60,10 +60,10 @@ const WorkExperienceForm = ({
 
             <div className="mt-4">
               <label className="text-xs font-medium text-slate-600">
-                Description
+                Keterangan
               </label>
               <textarea
-                placeholder="What did you do in this role?"
+                placeholder="Apa saja yang di kerjakan dalam peran?"
                 className="form-input w-full mt-1"
                 rows={3}
                 value={experience.description || ""}
@@ -98,7 +98,7 @@ const WorkExperienceForm = ({
             })
           }
         >
-          <Plus /> Add Work Experience
+          <Plus /> Tambahkan Pengalaman Kerja Yang Lain
         </button>
       </div>
     </div>

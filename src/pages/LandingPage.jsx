@@ -73,37 +73,37 @@ const LandingPage = () => {
       icon: <Edit3 className="w-8 h-8 text-blue-600" />,
       title: "Smart Editor",
       description:
-        "Intuitive drag-and-drop interface with real-time preview and AI-powered suggestions.",
+        "Antarmuka seret dan lepas yang intuitif dengan pratinjau waktu nyata dan saran bertenaga AI..",
     },
     {
       icon: <Eye className="w-8 h-8 text-purple-600" />,
       title: "Live Preview",
       description:
-        "See your changes instantly with our advanced live preview technology.",
+        "Lihat perubahan Anda secara instan dengan teknologi pratinjau langsung canggih kami.",
     },
     {
       icon: <Download className="w-8 h-8 text-green-600" />,
       title: "Export Options",
       description:
-        "Download in multiple formats: PDF, Word, or share with a custom link.",
+        "Unduh dalam berbagai format: PDF, Word, atau bagikan dengan tautan khusus.",
     },
     {
       icon: <Zap className="w-8 h-8 text-yellow-600" />,
       title: "Lightning Fast",
       description:
-        "Build professional resumes in under 5 minutes with our optimized workflow.",
+        "Buat resume profesional dalam waktu kurang dari 5 menit dengan alur kerja kami yang dioptimalkan.",
     },
     {
       icon: <Shield className="w-8 h-8 text-red-600" />,
       title: "Secure & Private",
       description:
-        "Your data is encrypted and secure. We never share your information.",
+        "Data Anda dienkripsi dan aman. Kami tidak pernah membagikan informasi Anda.",
     },
     {
       icon: <Smartphone className="w-8 h-8 text-indigo-600" />,
       title: "Mobile Friendly",
       description:
-        "Edit and preview your resume on any device, anywhere, anytime.",
+        "Edit dan pratinjau resume Anda di perangkat apa pun, di mana saja, kapan saja.",
     },
   ];
 
@@ -135,10 +135,10 @@ const LandingPage = () => {
   ];
 
   const stats = [
-    { number: "50K+", label: "Resumes Created" },
-    { number: "95%", label: "Success Rate" },
-    { number: "4.9/5", label: "User Rating" },
-    { number: "24/7", label: "Support" },
+    { number: "50K+", label: "Resume Dibuat" },
+    { number: "95%", label: "Tingkat Keberhasilan" },
+    { number: "4.9/5", label: "Ratting Pengguna" },
+    { number: "24/7", label: "Pendukung" },
   ];
 
   return (
@@ -459,7 +459,7 @@ const LandingPage = () => {
             className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 group"
             onClick={handleCTA}
           >
-            Start Now
+            Mulai Sekarang
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -491,63 +491,63 @@ const LandingPage = () => {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
+              <h3 className="font-semibold mb-4">Produk</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Templates
+                    Template
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Features
+                    Fitur
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Pricing
+                    Harga
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Examples
+                    Contoh
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Support</h3>
+              <h3 className="font-semibold mb-4">Pendukung</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Help Center
+                    Pusat Bantuan
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Contact Us
+                    Hubungi Kami
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    FAQ
+                    Pertanyaan Yang Sering Diajukan
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Tutorials
+                    Tutorial
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
+              <h3 className="font-semibold mb-4">Perusahaan</h3>
               <ul className="space-y-2 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    About
+                    Tentang
                   </a>
                 </li>
                 <li>
@@ -557,12 +557,12 @@ const LandingPage = () => {
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Carir
+                    Karir
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
-                    Privasi
+                    Keamanan
                   </a>
                 </li>
               </ul>
@@ -571,7 +571,7 @@ const LandingPage = () => {
 
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
             <p>
-              &copy; 2025 ResumeMaker. Made with TripleAAA untuk Para
+              &copy; 2025 ResumeMaker. Made with Kelompok 4 untuk Para
               profesional.
             </p>
           </div>

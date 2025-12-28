@@ -8,8 +8,11 @@ const EducationDetailsForm = ({
   addArrayItem,
   removeArrayItem,
 }) => {
-  return <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">Education</h2>
+  return (
+    <div className="px-5 pt-5">
+      <h2 className="text-lg font-semibold text-gray-900">
+        Riwayat Pendidikan
+      </h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {educationInfo.map((education, index) => (
@@ -19,8 +22,8 @@ const EducationDetailsForm = ({
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Degree"
-                placeholder="B.Tech in Computer Science"
+                label="Derajat"
+                placeholder="Sarjana Ilmu Komputer"
                 type="text"
                 value={education.degree || ""}
                 onChange={({ target }) =>
@@ -29,7 +32,7 @@ const EducationDetailsForm = ({
               />
 
               <Input
-                label="Institution"
+                label="Lembaga"
                 placeholder="XYZ University"
                 type="text"
                 value={education.institution || ""}
@@ -39,7 +42,7 @@ const EducationDetailsForm = ({
               />
 
               <Input
-                label="Start Date"
+                label="Tanggal Mulai"
                 type="month"
                 value={education.startDate || ""}
                 onChange={({ target }) =>
@@ -48,7 +51,7 @@ const EducationDetailsForm = ({
               />
 
               <Input
-                label="End Date"
+                label="Tanggal Akhir"
                 type="month"
                 value={education.endDate || ""}
                 onChange={({ target }) =>
@@ -81,10 +84,11 @@ const EducationDetailsForm = ({
             })
           }
         >
-          <Plus /> Add Education
+          <Plus /> Tambahkan Riwayat Pendidikan
         </button>
       </div>
     </div>
+  );
 };
 
 export default EducationDetailsForm;

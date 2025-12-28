@@ -30,17 +30,17 @@ const SignUp = ({ setCurrentPage }) => {
     let profileImageUrl = "";
 
     if (!fullName) {
-      setError("Please enter full name.");
+      setError("Silakan masukkan nama lengkap.");
       return;
     }
 
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address.");
+      setError("Silakan masukkan alamat email yang valid.");
       return;
     }
 
     if (!password) {
-      setError("Please enter the password");
+      setError("Silakan masukkan kata sandi");
       return;
     }
 
@@ -100,12 +100,12 @@ const SignUp = ({ setCurrentPage }) => {
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
       <h3 className="text-lg font-semibold text-black">
-        {verificationSent ? "Email Verification" : "Create an Account"}
+        {verificationSent ? "Email Verification" : "Buat Akun"}
       </h3>
       <p className="text-xs text-slate-700 mt-[5px] mb-6">
         {verificationSent
           ? "Please verify your email address to continue."
-          : "Join us today by entering your details below."}
+          : "Bergabunglah dengan kami dengan memasukkan detail Anda di bawah ini."}
       </p>
 
       {!verificationSent ? (
@@ -116,24 +116,24 @@ const SignUp = ({ setCurrentPage }) => {
             <Input
               value={fullName}
               onChange={({ target }) => setFullName(target.value)}
-              label="Full Name"
-              placeholder="aldi"
+              label="Nama Lengkap"
+              placeholder="Aldi Pratama"
               type="text"
             />
 
             <Input
               value={email}
               onChange={({ target }) => setEmail(target.value)}
-              label="Email Address"
-              placeholder="aldin@example.com"
+              label="Alamat Email"
+              placeholder="akbarjuliandi@example.com"
               type="text"
             />
 
             <Input
               value={password}
               onChange={({ target }) => setPassword(target.value)}
-              label="Password"
-              placeholder="Min 8 Characters"
+              label="Kata Sandi"
+              placeholder="Minimal 8 Karakter"
               type="password"
             />
           </div>
@@ -161,17 +161,17 @@ const SignUp = ({ setCurrentPage }) => {
         <div>
           <div className="bg-purple-50 border border-purple-200 text-purple-800 text-sm p-3 rounded mb-3">
             {info ||
-              "We've sent a verification link to your email. Please verify to log in."}
+              "Kami telah mengirimkan tautan verifikasi ke email Anda. Mohon verifikasi untuk masuk."}
           </div>
           <button
             type="button"
             className="btn-small"
             onClick={handleResendVerification}
           >
-            Resend Verification Email
+            Kirim Verifikasi Email
           </button>
           <p className="text-[13px] text-slate-800 mt-3">
-            Back to{" "}
+            Kembali ke{" "}
             <button
               className="font-medium text-primary underline cursor-pointer"
               onClick={() => setCurrentPage("login")}

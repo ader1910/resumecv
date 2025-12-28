@@ -8,8 +8,9 @@ const CertificationInfoFrom = ({
   addArrayItem,
   removeArrayItem,
 }) => {
-  return <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">Certifications</h2>
+  return (
+    <div className="px-5 pt-5">
+      <h2 className="text-lg font-semibold text-gray-900">Sertifikat</h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {certifications.map((cert, index) => (
@@ -19,7 +20,7 @@ const CertificationInfoFrom = ({
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="Certificate Title"
+                label="Judul Sertifikat"
                 placeholder="Fullstack Web Developer"
                 type="text"
                 value={cert.title || ""}
@@ -29,7 +30,7 @@ const CertificationInfoFrom = ({
               />
 
               <Input
-                label="Issuer"
+                label="Penerbit"
                 placeholder="Coursera / Google / etc."
                 type="text"
                 value={cert.issuer || ""}
@@ -39,7 +40,7 @@ const CertificationInfoFrom = ({
               />
 
               <Input
-                label="Year"
+                label="Tahun"
                 placeholder="2024"
                 type="text"
                 value={cert.year || ""}
@@ -47,12 +48,15 @@ const CertificationInfoFrom = ({
                 pattern="[0-9]{4}"
                 onChange={({ target }) => {
                   // Only allow numbers and limit to 4 digits
-                  const value = target.value.replace(/[^0-9]/g, '').slice(0, 4);
+                  const value = target.value.replace(/[^0-9]/g, "").slice(0, 4);
                   updateArrayItem(index, "year", value);
                 }}
                 onKeyPress={(e) => {
                   // Prevent non-numeric characters
-                  if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                  if (
+                    !/[0-9]/.test(e.key) &&
+                    !["Backspace", "Delete", "Tab", "Enter"].includes(e.key)
+                  ) {
                     e.preventDefault();
                   }
                 }}
@@ -82,10 +86,11 @@ const CertificationInfoFrom = ({
             })
           }
         >
-          <Plus /> Add Certification
+          <Plus /> Tambahkan SertifiKat
         </button>
       </div>
     </div>
+  );
 };
 
 export default CertificationInfoFrom;

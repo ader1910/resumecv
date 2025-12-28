@@ -8,8 +8,11 @@ const ProjectsDetailFrom = ({
   addArrayItem,
   removeArrayItem,
 }) => {
-  return <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">Projects</h2>
+  return (
+    <div className="px-5 pt-5">
+      <h2 className="text-lg font-semibold text-gray-900">
+        Pengalaman Project Yang Pernah Dibuat
+      </h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {projectInfo.map((project, index) => (
@@ -20,12 +23,11 @@ const ProjectsDetailFrom = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="col-span-2">
                 <Input
-                  label="Project Title"
+                  label="Nama Project"
                   placeholder="Portfolio Website"
                   type="text"
                   value={project.title || ""}
-                  onChange={
-                    ({ target }) =>
+                  onChange={({ target }) =>
                     updateArrayItem(index, "title", target.value)
                   }
                 />
@@ -33,22 +35,21 @@ const ProjectsDetailFrom = ({
 
               <div className="col-span-2">
                 <label className="text-xs font-medium text-slate-600">
-                  Description
+                  Keterangan
                 </label>
                 <textarea
-                  placeholder="Short description about the project"
+                  placeholder="Deskripsi mengenai project yang dibuat"
                   className="form-input w-full mt-1"
                   rows={3}
                   value={project.description || ""}
-                  onChange={
-                    ({ target }) =>
+                  onChange={({ target }) =>
                     updateArrayItem(index, "description", target.value)
                   }
                 />
               </div>
 
               <Input
-                label="GitHub Link"
+                label="Tautan Github"
                 placeholder="https://github.com/username/project"
                 type="url"
                 value={project.github || ""}
@@ -58,7 +59,7 @@ const ProjectsDetailFrom = ({
               />
 
               <Input
-                label="Live Demo URL"
+                label="URL Demo Langsung"
                 placeholder="https://yourproject.live"
                 type="url"
                 value={project.liveDemo || ""}
@@ -92,10 +93,11 @@ const ProjectsDetailFrom = ({
             })
           }
         >
-          <Plus /> Add Project
+          <Plus /> Tambahkan Project
         </button>
       </div>
     </div>
+  );
 };
 
 export default ProjectsDetailFrom;

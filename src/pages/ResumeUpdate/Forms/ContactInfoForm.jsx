@@ -1,23 +1,24 @@
-import React from 'react'
+import React from "react";
 import Input from "../../../components/Inputs/Input";
 
-const ContactInfoForm = ({contactInfo, updateSection}) => {
+const ContactInfoForm = ({ contactInfo, updateSection }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">
-        Contact Information
-      </h2>
+      <h2 className="text-lg font-semibold text-gray-900">Informasi Kontak</h2>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="col-span-2">
           <Input
-            label="Address"
-            placeholder="Short Address"
+            label="Alamat"
+            placeholder="Masukan Alamat Anda"
             type="text"
             value={contactInfo.location || ""}
             onChange={({ target }) => {
               // Allow letters, numbers, spaces, commas, periods, hyphens, and common address characters
-              const addressValue = target.value.replace(/[^a-zA-Z0-9\s,.\-#\/]/g, '');
+              const addressValue = target.value.replace(
+                /[^a-zA-Z0-9\s,.\-#\/]/g,
+                ""
+              );
               updateSection("location", addressValue);
             }}
             maxLength="100"
@@ -27,20 +28,20 @@ const ContactInfoForm = ({contactInfo, updateSection}) => {
 
         <Input
           label="Email"
-          placeholder="john@example.com"
+          placeholder="akbarjuliandi@example.com"
           type="email"
           value={contactInfo.email || ""}
           onChange={({ target }) => updateSection("email", target.value)}
         />
 
         <Input
-          label="Phone Number"
-          placeholder="9876543210"
+          label="Nomor Telepon"
+          placeholder="+62"
           type="tel"
           value={contactInfo.phone || ""}
           onChange={({ target }) => {
             // Only allow numbers, spaces, hyphens, parentheses, and plus sign
-            const phoneValue = target.value.replace(/[^0-9\s\-\(\)\+]/g, '');
+            const phoneValue = target.value.replace(/[^0-9\s\-\(\)\+]/g, "");
             updateSection("phone", phoneValue);
           }}
           pattern="[0-9\s\-\(\)\+]*"
@@ -74,7 +75,7 @@ const ContactInfoForm = ({contactInfo, updateSection}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactInfoForm
+export default ContactInfoForm;

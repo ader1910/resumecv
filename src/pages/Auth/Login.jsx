@@ -77,7 +77,9 @@ const Login = ({ setCurrentPage }) => {
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">Welcome Back</h3>
+      <h3 className="text-lg font-semibold text-black">
+        Selamat Datang Kembali
+      </h3>
       <p className="text-xs text-slate-700 mt-[5px] mb-6">
         Silakan masukkan detail Anda untuk masuk
       </p>
@@ -86,16 +88,16 @@ const Login = ({ setCurrentPage }) => {
         <Input
           value={email}
           onChange={({ target }) => setEmail(target.value)}
-          label="Email Address"
-          placeholder="john@example.com"
+          label="Alamat Email Anda"
+          placeholder="akbarjuliandi@example.com"
           type="text"
         />
 
         <Input
           value={password}
           onChange={({ target }) => setPassword(target.value)}
-          label="Password"
-          placeholder="Min 8 Characters"
+          label="Kata Sandi"
+          placeholder="Minimal 8 Karakter"
           type="password"
         />
 
@@ -117,7 +119,7 @@ const Login = ({ setCurrentPage }) => {
         </button>
 
         <p className="text-[13px] text-slate-800 mt-3">
-          Don’t have an account?{" "}
+          Belum Memiliki Akun?{" "}
           <button
             className="font-medium text-primary underline cursor-pointer"
             onClick={() => {

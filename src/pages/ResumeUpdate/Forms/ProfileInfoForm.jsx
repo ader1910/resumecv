@@ -1,13 +1,11 @@
-import React from 'react'
+import React from "react";
 import ProfilePhotoSelector from "../../../components/Inputs/ProfilePhotoSelector";
 import Input from "../../../components/Inputs/Input";
 
-const ProfileInfoForm = ({profileData, updateSection}) => {
+const ProfileInfoForm = ({ profileData, updateSection }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">
-        Personal Information
-      </h2>
+      <h2 className="text-lg font-semibold text-gray-900">Informasi Pribadi</h2>
 
       <div className="mt-4">
         <ProfilePhotoSelector
@@ -21,7 +19,7 @@ const ProfileInfoForm = ({profileData, updateSection}) => {
           <Input
             value={profileData.fullName || ""}
             onChange={({ target }) => updateSection("fullName", target.value)}
-            label="Full Name"
+            label="Nama Lengkap"
             placeholder="John"
             type="text"
           />
@@ -31,18 +29,18 @@ const ProfileInfoForm = ({profileData, updateSection}) => {
             onChange={({ target }) =>
               updateSection("designation", target.value)
             }
-            label="Designation"
-            placeholder="UI Designer"
+            label="Gelar/Sebutan"
+            placeholder="Graphic Designer"
             type="text"
           />
 
           <div className="col-span-2 mt-3">
             <label className="text-xs font-medium text-slate-600">
-              Summary
+              Ringkasan Tentang Diri Anda
             </label>
 
             <textarea
-              placeholder="Short Introduction"
+              placeholder="Penjelasan Singkat"
               className="form-input"
               rows={4}
               value={profileData.summary || ""}
@@ -52,7 +50,7 @@ const ProfileInfoForm = ({profileData, updateSection}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileInfoForm
+export default ProfileInfoForm;

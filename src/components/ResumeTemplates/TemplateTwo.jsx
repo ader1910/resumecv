@@ -1,13 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Rss,
-  Github,
-  User,
-  Linkedin,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Rss, Github, User, Linkedin } from "lucide-react";
 import ContactInfo from "../ResumeSections/ContactInfo";
 import EducationInfo from "../ResumeSections/EducationInfo";
 import { formatYearMonth } from "../../utils/helper";
@@ -77,57 +69,56 @@ const TemplateTwo = ({ resumeData, colorPalette, containerWidth }) => {
             )}
           </div>
 
+          <div>
+            <div className="grid grid-cols-12 gap-2 items-center">
+              <div className="col-span-6">
+                <h2 className="text-2xl font-bold">
+                  {resumeData.profileInfo.fullName}
+                </h2>
+                <p className="text-[15px] font-semibold mb-2">
+                  {resumeData.profileInfo.designation}
+                </p>
 
-            <div>
-              <div className="grid grid-cols-12 gap-2 items-center">
-                <div className="col-span-6">
-                  <h2 className="text-2xl font-bold">
-                    {resumeData.profileInfo.fullName}
-                  </h2>
-                  <p className="text-[15px] font-semibold mb-2">
-                    {resumeData.profileInfo.designation}
-                  </p>
+                <ContactInfo
+                  icon={<MapPin />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.location}
+                />
+              </div>
 
+              <div className="col-span-6 flex flex-col gap-5 mt-2">
+                <ContactInfo
+                  icon={<Mail />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.email}
+                />
+
+                <ContactInfo
+                  icon={<Phone />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.phone}
+                />
+              </div>
+
+              <div className="col-span-6">
+                {resumeData.contactInfo.linkedin && (
                   <ContactInfo
-                    icon={<MapPin />}
+                    icon={<Linkedin />}
                     iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.location}
+                    value={resumeData.contactInfo.linkedin}
                   />
-                </div>
+                )}
+              </div>
 
-                <div className="col-span-6 flex flex-col gap-5 mt-2">
-                  <ContactInfo
-                    icon={<Mail />}
-                    iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.email}
-                  />
-
-                  <ContactInfo
-                    icon={<Phone />}
-                    iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.phone}
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  {resumeData.contactInfo.linkedin && (
-                    <ContactInfo
-                      icon={<Linkedin />}
-                      iconBG={themeColors[2]}
-                      value={resumeData.contactInfo.linkedin}
-                    />
-                  )}
-                </div>
-
-                <div className="col-span-6">
-                  <ContactInfo
-                    icon={<Rss />}
-                    iconBG={themeColors[2]}
-                    value={resumeData.contactInfo.website}
-                  />
-                </div>
+              <div className="col-span-6">
+                <ContactInfo
+                  icon={<Rss />}
+                  iconBG={themeColors[2]}
+                  value={resumeData.contactInfo.website}
+                />
               </div>
             </div>
+          </div>
         </div>
       </div>
 
