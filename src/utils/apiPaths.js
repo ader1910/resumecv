@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080";
+export const BASE_URL = "https://agreed-dasi-pemrograman-d1dccb10.koyeb.app";
 
 // utils/apiPaths.js
 export const API_PATHS = {

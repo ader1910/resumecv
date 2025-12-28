@@ -8,7 +8,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
 import uploadImage from "../../utils/uploadImage";
 
-const SignUp = ({setCurrentPage}) => {
+const SignUp = ({ setCurrentPage }) => {
   const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +66,9 @@ const SignUp = ({setCurrentPage}) => {
       // Backend now requires email verification before login
       setVerificationSent(true);
       setRegisteredEmail(email);
-      setInfo("We've sent a verification link to your email. Please verify to log in.");
+      setInfo(
+        "We've sent a verification link to your email. Please verify to log in."
+      );
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -74,7 +76,7 @@ const SignUp = ({setCurrentPage}) => {
         setError("Something went wrong. Please try again.");
       }
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(true);
     }
   };
 
@@ -82,7 +84,9 @@ const SignUp = ({setCurrentPage}) => {
     setError("");
     setInfo("");
     try {
-      await axiosInstance.post(API_PATHS.AUTH.RESEND_VERIFICATION, { email: registeredEmail || email });
+      await axiosInstance.post(API_PATHS.AUTH.RESEND_VERIFICATION, {
+        email: registeredEmail || email,
+      });
       setInfo("Verification email resent. Please check your inbox.");
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -95,14 +99,17 @@ const SignUp = ({setCurrentPage}) => {
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">Create an Account</h3>
+      <h3 className="text-lg font-semibold text-black">
+        {verificationSent ? "Email Verification" : "Create an Account"}
+      </h3>
       <p className="text-xs text-slate-700 mt-[5px] mb-6">
-        Join us today by entering your details below.
+        {verificationSent
+          ? "Please verify your email address to continue."
+          : "Join us today by entering your details below."}
       </p>
 
       {!verificationSent ? (
         <form onSubmit={handleSignUp}>
-
           <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
@@ -110,7 +117,7 @@ const SignUp = ({setCurrentPage}) => {
               value={fullName}
               onChange={({ target }) => setFullName(target.value)}
               label="Full Name"
-              placeholder="John"
+              placeholder="aldi"
               type="text"
             />
 
@@ -118,7 +125,7 @@ const SignUp = ({setCurrentPage}) => {
               value={email}
               onChange={({ target }) => setEmail(target.value)}
               label="Email Address"
-              placeholder="john@example.com"
+              placeholder="aldin@example.com"
               type="text"
             />
 
@@ -153,7 +160,8 @@ const SignUp = ({setCurrentPage}) => {
       ) : (
         <div>
           <div className="bg-purple-50 border border-purple-200 text-purple-800 text-sm p-3 rounded mb-3">
-            {info || "We've sent a verification link to your email. Please verify to log in."}
+            {info ||
+              "We've sent a verification link to your email. Please verify to log in."}
           </div>
           <button
             type="button"
@@ -163,7 +171,7 @@ const SignUp = ({setCurrentPage}) => {
             Resend Verification Email
           </button>
           <p className="text-[13px] text-slate-800 mt-3">
-            Back to {" "}
+            Back to{" "}
             <button
               className="font-medium text-primary underline cursor-pointer"
               onClick={() => setCurrentPage("login")}
@@ -174,7 +182,7 @@ const SignUp = ({setCurrentPage}) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
