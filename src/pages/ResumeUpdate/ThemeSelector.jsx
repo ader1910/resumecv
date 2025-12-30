@@ -140,7 +140,7 @@ const ThemeSelector = ({
           <Tabs tabs={TAB_DATA} activeTab={tabValue} setActiveTab={setTabValue} />
           {!templateRestrictions.isPremium && (
             <div className="flex items-center gap-2">
-              <div className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">
+              <div className="bg-orange-900/30 text-orange-300 px-3 py-1 rounded-full text-sm font-semibold">
                 Basic Plan
               </div>
               <button 
@@ -152,7 +152,7 @@ const ThemeSelector = ({
             </div>
           )}
           {templateRestrictions.isPremium && (
-            <div className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">
+            <div className="bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full text-sm font-semibold">
               Premium Plan
             </div>
           )}
@@ -168,7 +168,7 @@ const ThemeSelector = ({
       </div>
 
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-12 md:col-span-5 bg-white">
+        <div className="col-span-12 md:col-span-5 bg-transparent">
           <div className="grid grid-cols-2 gap-5 max-h-[80vh] overflow-scroll custom-scrollbar md:pr-5">
             {tabValue === "Templates" &&
               resumeTemplates.map((template, index) => {
@@ -198,7 +198,7 @@ const ThemeSelector = ({
               ))}
           </div>
         </div>
-        <div className="col-span-12 md:col-span-7 bg-white -mt-3" ref={resumeRef}>
+        <div className="col-span-12 md:col-span-7 bg-transparent -mt-3" ref={resumeRef}>
           <RenderResume
             templateId={selectedTemplate?.theme || ""}
             resumeData={resumeData || DUMMY_RESUME_DATA}
@@ -216,8 +216,8 @@ export default ThemeSelector;
 const ColorPalette = ({ colors, isSelected, onSelect }) => {
   return (
     <div
-      className={`h-28 bg-purple-50 flex rounded-lg overflow-hidden border-2 ${
-        isSelected ? "border-purple-500" : "border-none"
+      className={`h-28 bg-slate-800 flex rounded-lg overflow-hidden border-2 ${
+        isSelected ? "border-purple-400" : "border-none"
       }`}
     >
       {colors.map((color, index) => (

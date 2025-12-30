@@ -41,14 +41,14 @@ const Dashboard = () => {
     <DashboardLayout>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-7 pt-1 pb-6 px-4 md:px-0">
         <div
-          className="h-[300px] flex flex-col gap-5 items-center justify-center bg-white rounded-lg border border-purple-100 hover:border-purple-300 hover:bg-purple-50/5 cursor-pointer"
+          className="h-[300px] flex flex-col gap-5 items-center justify-center bg-white dark:bg-slate-800/50 rounded-lg border-2 border-dashed border-purple-100 dark:border-white/10 hover:border-purple-300 dark:hover:border-purple-500/50 hover:bg-purple-50/5 cursor-pointer transition-all duration-300 group"
           onClick={() => setOpenCreateModal(true)}
         >
-          <div className="w-12 h-12 flex items-center justify-center bg-purple-200/60 rounded-2xl">
-            <CirclePlus className="text-xl text-purple-500" />
+          <div className="w-12 h-12 flex items-center justify-center bg-purple-200/60 dark:bg-purple-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+            <CirclePlus className="text-xl text-purple-600 dark:text-purple-400" />
           </div>
 
-          <h3 className="font-medium text-gray-800">Tambahkan Resume Baru</h3>
+          <h3 className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Tambahkan Resume Baru</h3>
         </div>
 
         {allResumes?.map((resume, index) => (

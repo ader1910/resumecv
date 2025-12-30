@@ -99,10 +99,10 @@ const SignUp = ({ setCurrentPage }) => {
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">
+      <h3 className="text-lg font-semibold text-black dark:text-white">
         {verificationSent ? "Email Verification" : "Buat Akun"}
       </h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <p className="text-xs text-slate-700 dark:text-slate-400 mt-[5px] mb-6">
         {verificationSent
           ? "Please verify your email address to continue."
           : "Bergabunglah dengan kami dengan memasukkan detail Anda di bawah ini."}
@@ -145,7 +145,7 @@ const SignUp = ({ setCurrentPage }) => {
             {isSubmitting ? "PLEASE WAIT..." : "SIGN UP"}
           </button>
 
-          <p className="text-[13px] text-slate-800 mt-3">
+          <p className="text-[13px] text-slate-800 dark:text-slate-300 mt-3">
             Already an account?{" "}
             <button
               className="font-medium text-primary underline cursor-pointer"
@@ -170,7 +170,7 @@ const SignUp = ({ setCurrentPage }) => {
           >
             Kirim Verifikasi Email
           </button>
-          <p className="text-[13px] text-slate-800 mt-3">
+          <p className="text-[13px] text-slate-800 dark:text-slate-300 mt-3">
             Kembali ke{" "}
             <button
               className="font-medium text-primary underline cursor-pointer"

@@ -10,7 +10,7 @@ const ProjectsDetailFrom = ({
 }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">
         Pengalaman Project Yang Pernah Dibuat
       </h2>
 
@@ -18,7 +18,7 @@ const ProjectsDetailFrom = ({
         {projectInfo.map((project, index) => (
           <div
             key={index}
-            className="border border-gray-200/80 p-4 rounded-lg relative"
+            className="border border-slate-200 dark:border-white/10 p-4 rounded-lg relative"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="col-span-2">
@@ -34,7 +34,7 @@ const ProjectsDetailFrom = ({
               </div>
 
               <div className="col-span-2">
-                <label className="text-xs font-medium text-slate-600">
+                <label className="text-xs font-medium text-slate-700 font-semibold dark:text-slate-300">
                   Keterangan
                 </label>
                 <textarea
@@ -72,7 +72,7 @@ const ProjectsDetailFrom = ({
             {projectInfo.length > 1 && (
               <button
                 type="button"
-                className="absolute top-3 right-3 text-sm text-red-600 hover:underline cursor-pointer"
+                className="absolute top-3 right-3 text-sm text-red-400 hover:underline cursor-pointer"
                 onClick={() => removeArrayItem(index)}
               >
                 <Trash2 />
@@ -83,7 +83,7 @@ const ProjectsDetailFrom = ({
 
         <button
           type="button"
-          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-100 text-purple-800 text-sm font-medium hover:bg-purple-200 cursor-pointer"
+          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-900/30 text-purple-300 text-sm font-medium hover:bg-purple-900/50 cursor-pointer"
           onClick={() =>
             addArrayItem({
               title: "",

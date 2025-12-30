@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import HERO_IMG from "../assets/hero-img.png";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
@@ -20,6 +19,10 @@ import {
   Shield,
   Smartphone,
   FileText,
+  Moon,
+  Sun,
+  Sparkles,
+  Rocket,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -31,14 +34,35 @@ const LandingPage = () => {
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
-  // Show toast for email verification redirect flags
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return (
+      savedTheme === "dark" ||
+      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+    );
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (isDarkMode) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const verified = params.get("emailVerified");
     if (!verified) return;
 
     const handledKey = "emailVerifiedToastHandled";
-    // Guard against StrictMode double-effect and repeated visits in same session
     if (sessionStorage.getItem(handledKey) === "true") {
       if (location.search) navigate(location.pathname, { replace: true });
       return;
@@ -46,17 +70,16 @@ const LandingPage = () => {
 
     const reason = params.get("reason");
     if (verified === "success") {
-      toast.success("Email verified successfully. You can now log in.");
+      toast.success("Email berhasil diverifikasi. Anda sekarang dapat masuk.");
     } else if (verified === "failed") {
       toast.error(
         reason
           ? decodeURIComponent(reason)
-          : "Email verification failed. Please request a new link."
+          : "Verifikasi email gagal. Silakan minta tautan baru."
       );
     }
 
     sessionStorage.setItem(handledKey, "true");
-    // Clean URL via router so useLocation updates
     navigate(location.pathname, { replace: true });
   }, [location.search, navigate]);
 
@@ -70,38 +93,38 @@ const LandingPage = () => {
 
   const features = [
     {
-      icon: <Edit3 className="w-8 h-8 text-blue-600" />,
+      icon: <Edit3 className="w-8 h-8 text-cyan-400" />,
       title: "Smart Editor",
       description:
-        "Antarmuka seret dan lepas yang intuitif dengan pratinjau waktu nyata dan saran bertenaga AI..",
+        "Antarmuka seret dan lepas yang intuitif dengan pratinjau waktu nyata dan saran bertenaga AI.",
     },
     {
-      icon: <Eye className="w-8 h-8 text-purple-600" />,
+      icon: <Eye className="w-8 h-8 text-fuchsia-400" />,
       title: "Live Preview",
       description:
         "Lihat perubahan Anda secara instan dengan teknologi pratinjau langsung canggih kami.",
     },
     {
-      icon: <Download className="w-8 h-8 text-green-600" />,
-      title: "Export Options",
+      icon: <Download className="w-8 h-8 text-blue-400" />,
+      title: "Opsi Ekspor",
       description:
         "Unduh dalam berbagai format: PDF, Word, atau bagikan dengan tautan khusus.",
     },
     {
-      icon: <Zap className="w-8 h-8 text-yellow-600" />,
-      title: "Lightning Fast",
+      icon: <Zap className="w-8 h-8 text-yellow-400" />,
+      title: "Sangat Cepat",
       description:
         "Buat resume profesional dalam waktu kurang dari 5 menit dengan alur kerja kami yang dioptimalkan.",
     },
     {
-      icon: <Shield className="w-8 h-8 text-red-600" />,
-      title: "Secure & Private",
+      icon: <Shield className="w-8 h-8 text-emerald-400" />,
+      title: "Aman & Privat",
       description:
-        "Data Anda dienkripsi dan aman. Kami tidak pernah membagikan informasi Anda.",
+        "Data Anda dienkripsi dan aman. Kami tidak pernah membagikan informasi pribadi Anda.",
     },
     {
-      icon: <Smartphone className="w-8 h-8 text-indigo-600" />,
-      title: "Mobile Friendly",
+      icon: <Smartphone className="w-8 h-8 text-violet-400" />,
+      title: "Ramah Seluler",
       description:
         "Edit dan pratinjau resume Anda di perangkat apa pun, di mana saja, kapan saja.",
     },
@@ -115,6 +138,7 @@ const LandingPage = () => {
       content:
         "Pembuat resume ini membantu saya mendapatkan pekerjaan impian saya! Templatnya modern dan antarmukanya sangat ramah pengguna.",
       rating: 5,
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ade",
     },
     {
       name: "Aldi Pratama",
@@ -123,6 +147,7 @@ const LandingPage = () => {
       content:
         "Saya sudah mencoba banyak pembuat resume, tapi yang ini menonjol. Fitur live preview adalah game-changer.",
       rating: 5,
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aldi",
     },
     {
       name: "Akbar Juliandi",
@@ -131,452 +156,591 @@ const LandingPage = () => {
       content:
         "Templat yang indah dan pengalaman pengeditan yang mulus. Sangat merekomendasikan kepada siapa saja yang mencari resume profesional.",
       rating: 5,
+      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Akbar",
     },
   ];
 
   const stats = [
     { number: "50K+", label: "Resume Dibuat" },
     { number: "95%", label: "Tingkat Keberhasilan" },
-    { number: "4.9/5", label: "Ratting Pengguna" },
-    { number: "24/7", label: "Pendukung" },
+    { number: "4.9/5", label: "Rating Pengguna" },
+    { number: "24/7", label: "Dukungan" },
   ];
 
   return (
-    <div className="w-full min-h-full bg-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold flex items-center gap-2">
-              <FileText className="w-6 h-6 text-blue-600" />
-              <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-                Resume Maker CV
-              </span>
-            </div>
-            {user ? (
-              <ProfileInfoCard />
-            ) : (
-              <button
-                className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-2.5 rounded-full hover:shadow-lg transition-all duration-300 font-medium"
-                onClick={() => setOpenAuthModal(true)}
-              >
-                Mulai Gratis
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
+    <div className="w-full min-h-screen bg-slate-950 font-display text-white selection:bg-cyan-500/30 overflow-x-hidden relative py-4 lg:py-8">
+      {/* === Cosmic Background Layers (Liquid Plasma & Vortex) === */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* 1. Deep Space Base */}
+        <div className="absolute inset-0 bg-slate-950"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a] via-[#020617] to-black opacity-90"></div>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="container mx-auto px-4 py-20">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <Star className="w-4 h-4" />
-                Dipercaya oleh lebih dari 50.000 profesional.
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                Wujudkan impianmu
-                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                  Buat CV Profesional
+        {/* 2. The Spiral Vortex (Spinning) */}
+        <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] opacity-30 animate-[spin_100s_linear_infinite] mix-blend-screen">
+          <div className="w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,_transparent_0deg,_#3b82f6_60deg,_transparent_120deg,_#d946ef_180deg,_transparent_240deg,_#3b82f6_300deg,_transparent_360deg)] blur-[60px]"></div>
+        </div>
+
+        {/* 3. Liquid Neon Plasma Blobs */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Electric Blue Blob */}
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+
+          {/* Bright Magenta Blob */}
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+          {/* Vivid Purple Blob */}
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+          {/* Center Cyan Highlight */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[100px] mix-blend-screen animate-pulse"></div>
+        </div>
+
+        {/* 4. Starry Sky (High Density) */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07] mix-blend-overlay"></div>
+        {/* Hand-placed bright stars for "cinematic" look */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 2 + 1}px`,
+              height: `${Math.random() * 2 + 1}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              opacity: Math.random() * 0.7 + 0.3,
+            }}
+          ></div>
+        ))}
+      </div>
+
+      {/* === MAIN FLOATING GLASS CARD CONTAINER === */}
+      <div className="relative z-10 max-w-[1400px] mx-auto rounded-[40px] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl ring-1 ring-white/5">
+        {/* === Header === */}
+        <header className="absolute top-0 left-0 w-full z-50 transition-all duration-300">
+          <div className="container mx-auto px-6 lg:px-12 py-6">
+            <div className="flex justify-between items-center">
+              {/* Logo */}
+              <div
+                className="flex items-center gap-3 cursor-pointer group"
+                onClick={() => navigate("/")}
+              >
+                <div className="relative p-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_25px_rgba(6,182,212,0.6)] group-hover:shadow-[0_0_40px_rgba(6,182,212,0.8)] transition-all duration-300">
+                  <FileText className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-200 transition-all">
+                  ResumeMaker
                 </span>
-                Hanya dalam Hitungan Menit
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-                Buat resume profesional yang menakjubkan dengan pembuat resume
-                bertenaga AI kami. Tampil beda dari yang lain dan dapatkan
-                pekerjaan impian Anda lebih cepat.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center gap-4">
                 <button
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-semibold text-lg flex items-center gap-2 group"
-                  onClick={handleCTA}
+                  onClick={toggleTheme}
+                  className="p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/50 text-slate-200 hover:text-cyan-300 transition-all duration-300 backdrop-blur-md"
                 >
-                  Mulai Sekarang
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isDarkMode ? (
+                    <Sun className="w-5 h-5" />
+                  ) : (
+                    <Moon className="w-5 h-5" />
+                  )}
                 </button>
-                {user && (
-                  <Link
-                    to={"/dashboard"}
-                    className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full hover:border-gray-400 transition-colors font-semibold text-lg"
+
+                {user ? (
+                  <ProfileInfoCard />
+                ) : (
+                  <button
+                    className="relative group overflow-hidden px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300"
+                    onClick={() => setOpenAuthModal(true)}
                   >
-                    Lihat Template
-                  </Link>
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-cyan-500 opacity-80 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="relative text-white z-10 flex items-center gap-2">
+                      Mulai Gratis <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </button>
                 )}
               </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center lg:text-left">
-                    <div className="text-2xl font-bold text-gray-900">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex-1 relative">
-              <div className="relative z-10">
-                <img
-                  src={HERO_IMG}
-                  alt="Resume Builder Preview"
-                  className="w-full max-w-lg mx-auto rounded-2xl shadow-2xl"
-                />
-              </div>
-              <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-3xl opacity-20"></div>
-              <div className="absolute -bottom-4 -left-4 w-72 h-72 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl opacity-20"></div>
             </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Semua Yang Anda Butuhkan Untuk
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                {" "}
-                Sukses
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fitur-fitur unggulan kami membantu Anda membuat resume profesional
-              yang menarik perhatian pemberi kerja dan sistem ATS.
-            </p>
-          </div>
+        {/* === Hero Section (Split Layout) === */}
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 overflow-hidden">
+          {/* Decorative Floating Lines (Glowing Neon) */}
+          <svg
+            className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 mix-blend-screen opacity-60"
+            viewBox="0 0 1440 800"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Line 1: Electric Blue Flow */}
+            <path
+              d="M-100 600 C 200 400, 600 900, 1540 300"
+              stroke="url(#paint_glow_1)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              className="animate-energy-flow"
+              style={{ filter: "drop-shadow(0 0 8px #3b82f6)" }}
+            />
+            {/* Line 2: Magenta Pulse */}
+            <path
+              d="M-100 300 C 300 700, 900 200, 1540 600"
+              stroke="url(#paint_glow_2)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="animate-energy-flow"
+              style={{
+                animationDelay: "2s",
+                filter: "drop-shadow(0 0 8px #d946ef)",
+              }}
+            />
+            <defs>
+              <linearGradient id="paint_glow_1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
+                <stop offset="50%" stopColor="#3b82f6" stopOpacity="1" />
+                <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="paint_glow_2" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#d946ef" stopOpacity="0" />
+                <stop offset="50%" stopColor="#d946ef" stopOpacity="1" />
+                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="group p-8 rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 bg-white"
-              >
-                <div className="mb-6 p-3 bg-gray-50 rounded-xl w-fit group-hover:scale-110 transition-transform">
-                  {feature.icon}
+          <div className="container mx-auto relative z-10">
+            {" "}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* --- Left Column: Content --- */}
+              <div className="text-left flex flex-col items-start">
+                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-cyan-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 backdrop-blur-md shadow-lg animate-float">
+                  <Sparkles className="w-4 h-4" />
+                  <span className="tracking-wide">
+                    AI-Powered Resume Builder
+                  </span>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
+
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                  Wujudkan <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+                    Impian Karirmu
+                  </span>
+                </h1>
+
+                <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed font-body font-light">
+                  Buat resume profesional dalam hitungan menit dengan teknologi
+                  AI. Desain modern, tata letak otomatis, dan hasil yang memukau
+                  perekrut.
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Product Showcase */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Lihat Cara Kerjanya</h2>
-            <p className="text-xl text-gray-600">
-              Saksikan betapa mudahnya membuat cv seperti seseorang profesional.
-            </p>
-          </div>
+                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mb-16">
+                  <button
+                    onClick={handleCTA}
+                    className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800/50 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group"
+                  >
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600/40 to-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <span className="relative flex items-center gap-2">
+                      Buat Resume Sekarang{" "}
+                      <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-8">
-              <div className="aspect-video rounded-xl overflow-hidden">
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/c_61lyKtseI"
-                  title="Resume Builder Product Walkthrough"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <div className="text-center mt-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  Panduan Produk Lengkap{" "}
-                </h3>
-                <p className="text-gray-600">
-                  Lihat bagaimana para profesional membuat cv yang menakjubkan
-                  hanya dalam hitungan menit.{" "}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                  {user && (
+                    <button
+                      onClick={() => navigate("/dashboard")}
+                      className="px-8 py-4 rounded-full font-semibold text-base text-slate-300 border border-white/10 hover:bg-white/5 transition-all hover:text-white"
+                    >
+                      Lihat Template
+                    </button>
+                  )}
+                </div>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Dengan Harga Yang Sangat Terjangkau
-            </h2>
-            <p className="text-xl text-gray-600">
-              Pilih paket yang paling sesuai untuk Anda.{" "}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Free Plan */}
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2">Coba Gratis</h3>
-                <div className="text-4xl font-bold mb-2">Rp.0</div>
-                <p className="text-gray-600">Sempurna untuk memulai</p>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-500" />
-                  <span>1 Template Professional</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-500" />
-                  <span>Basic Editing Tools</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-500" />
-                  <span>PDF Download</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-500" />
-                  <span>Support ke email anda</span>
-                </li>
-              </ul>
-
-              <button
-                className="w-full bg-gray-100 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
-                onClick={handleCTA}
-              >
-                Mulai Dengan Gratis
-              </button>
-            </div>
-
-            {/* Premium Plan */}
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl p-8 relative overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-              <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
-                Popular
-              </div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold mb-2">Premium</h3>
-                <div className="text-4xl font-bold mb-2">Rp.99Ribu</div>
-                <p className="text-blue-100">Untuk semua fitur</p>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-400" />
-                  <span>Semua Templates Premium</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-400" />
-                  <span>Alat Pengeditan Tingkat Lanjut</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-400" />
-                  <span>Beberapa Format Ekspor</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-400" />
-                  <span>Dukungan Priorita</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-400" />
-                  <span>Branding Kustom</span>
-                </li>
-              </ul>
-
-              <button
-                className="w-full bg-white text-blue-600 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
-                onClick={handleCTA}
-              >
-                Upgrade ke Premium
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
-              Dicintai Para Profesional
-            </h2>
-            <p className="text-xl text-gray-600">
-              Lihat apa yang mereka katakan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
-                    />
+                {/* Stats */}
+                <div className="flex items-center gap-10 border-t border-white/10 pt-8 w-full">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="flex flex-col">
+                      <span className="text-2xl lg:text-3xl font-bold text-white mb-1">
+                        {stat.number}
+                      </span>
+                      <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">
+                        {stat.label}
+                      </span>
+                    </div>
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-                <div>
-                  <div className="font-semibold text-gray-900">
-                    {testimonial.name}
+              </div>
+
+              {/* --- Right Column: Visual (CSS 3D Floating Resume Card) --- */}
+              <div
+                className="relative w-full h-[500px] lg:h-[700px] flex items-center justify-center lg:justify-center pointer-events-none mt-8 lg:mt-0"
+                style={{ perspective: "1000px" }}
+              >
+                {/* 1. Background Glow (Atmosphere) */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-full blur-[100px] animate-pulse"></div>
+
+                {/* 2. The 3D Card Container */}
+                <div
+                  className="relative z-10 animate-float transition-all duration-700 ease-out hover:scale-105"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transform: "rotateY(-12deg) rotateX(5deg) rotateZ(2deg)",
+                  }}
+                >
+                  {/* === THE RESUME CARD === */}
+                  <div className="w-[300px] sm:w-[360px] h-[450px] sm:h-[540px] bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border border-white/40 overflow-hidden relative flex flex-col">
+                    {/* Glass Reflection Shine */}
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/60 via-transparent to-black/5 opacity-40 z-20 pointer-events-none"></div>
+
+                    {/* Resume Header Skeleton */}
+                    <div className="h-24 sm:h-28 bg-slate-50 border-b border-slate-100 p-4 sm:p-6 flex items-center gap-4 sm:gap-5 relative z-10">
+                      {/* Avatar */}
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg ring-4 ring-white"></div>
+
+                      {/* Name & Title Lines */}
+                      <div className="flex-1 space-y-2.5">
+                        <div className="h-3.5 sm:h-4 w-3/4 bg-slate-700 rounded-full opacity-80"></div>
+                        <div className="h-2 sm:h-2.5 w-1/2 bg-slate-400 rounded-full opacity-60"></div>
+                      </div>
+                    </div>
+
+                    {/* Resume Body Skeleton */}
+                    <div className="p-4 sm:p-6 space-y-5 sm:y-7 flex-1 bg-white relative z-10">
+                      {/* Section 1: Experience */}
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-blue-100 flex items-center justify-center">
+                            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-blue-500 rounded-sm"></div>
+                          </div>
+                          <div className="h-2 sm:h-2.5 w-1/3 bg-slate-800 rounded-full opacity-70"></div>
+                        </div>
+                        <div className="pl-7 sm:pl-8 space-y-2">
+                          <div className="h-1.5 sm:h-2 w-full bg-slate-100 rounded-full"></div>
+                          <div className="h-1.5 sm:h-2 w-5/6 bg-slate-100 rounded-full"></div>
+                        </div>
+                      </div>
+
+                      {/* Section 2: Skills (Grid) */}
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-purple-100 flex items-center justify-center">
+                            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-purple-500 rounded-sm"></div>
+                          </div>
+                          <div className="h-2 sm:h-2.5 w-1/4 bg-slate-800 rounded-full opacity-70"></div>
+                        </div>
+                        <div className="pl-7 sm:pl-8 grid grid-cols-2 gap-2 sm:gap-3">
+                          {[1, 2, 3, 4].map((_, i) => (
+                            <div
+                              key={i}
+                              className="h-6 sm:h-8 rounded-lg bg-slate-50 border border-slate-100 relative overflow-hidden"
+                            >
+                              <div className="absolute top-0 left-0 h-full w-2/3 bg-slate-200/50"></div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Section 3: Education */}
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-emerald-100 flex items-center justify-center">
+                            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 rounded-sm"></div>
+                          </div>
+                          <div className="h-2 sm:h-2.5 w-1/3 bg-slate-800 rounded-full opacity-70"></div>
+                        </div>
+                        <div className="pl-7 sm:pl-8 flex items-center gap-3">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-slate-50 border border-slate-100"></div>
+                          <div className="space-y-1 flex-1">
+                            <div className="h-1.5 sm:h-2 w-3/4 bg-slate-100 rounded-full"></div>
+                            <div className="h-1 sm:h-1.5 w-1/2 bg-slate-100 rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-500">
-                    {testimonial.role} at {testimonial.company}
+
+                  {/* === Floating Decorative Satellites (3D Space) === */}
+
+                  {/* Badge 1: ATS Friendly */}
+                  <div
+                    className="absolute -right-4 sm:-right-8 top-12 sm:top-16 p-2 sm:p-3 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] animate-float border border-white/50"
+                    style={{
+                      animationDelay: "1s",
+                      transform: "translateZ(40px)",
+                    }}
+                  >
+                    <Check
+                      className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500"
+                      strokeWidth={3}
+                    />
+                  </div>
+
+                  {/* Badge 2: AI Powered */}
+                  <div
+                    className="absolute -left-4 sm:-left-6 bottom-24 sm:bottom-32 p-2 sm:p-3 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] animate-float border border-white/50"
+                    style={{
+                      animationDelay: "2.5s",
+                      transform: "translateZ(60px)",
+                    }}
+                  >
+                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500 fill-purple-100" />
+                  </div>
+
+                  {/* Badge 3: Fast Export */}
+                  <div
+                    className="absolute -right-1 sm:-right-2 bottom-8 sm:bottom-12 p-2 sm:p-3 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] animate-float border border-white/50"
+                    style={{
+                      animationDelay: "1.5s",
+                      transform: "translateZ(20px)",
+                    }}
+                  >
+                    <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500 fill-yellow-500" />
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            Siap Membangun Masa Depan Anda?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Bergabunglah dengan ribuan profesional yang telah mendapatkan
-            pekerjaan impian mereka{" "}
-          </p>
-          <button
-            className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 group"
-            onClick={handleCTA}
-          >
-            Mulai Sekarang
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent mb-4">
-                ResumeMaker
-              </div>
-              <p className="text-gray-400 mb-4">
-                Buat cv profesional yang akan membuat Anda dipekerjakan.
-                Dipercaya oleh para profesional di seluruh dunia.
+        {/* === Features Grid === */}
+        <section className="py-24 relative z-10 border-t border-white/5">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="text-center mb-20">
+              <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-white">
+                Fitur Unggulan
+              </h2>
+              <p className="text-slate-400 font-body max-w-2xl mx-auto text-lg">
+                Semua yang Anda butuhkan untuk membuat resume kelas dunia.
               </p>
-              <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
-                  <Users className="w-5 h-5" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="group p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-800/60 transition-all duration-300 backdrop-blur-md relative overflow-hidden shadow-lg hover:shadow-cyan-500/10"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all"></div>
+
+                  <div className="mb-6 inline-block p-4 rounded-2xl bg-slate-900 border border-white/10 shadow-lg group-hover:scale-110 group-hover:shadow-cyan-500/20 transition-all duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-cyan-300 transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed font-body">
+                    {feature.description}
+                  </p>
                 </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
-                  <TrendingUp className="w-5 h-5" />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* === Testimonials === */}
+        <section className="py-24 relative z-10 bg-slate-900/30 border-y border-white/5">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white">
+                Apa Kata Mereka?
+              </h2>
+              <p className="text-slate-400 mt-2">
+                Cerita sukses dari para profesional.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((t, i) => (
+                <div
+                  key={i}
+                  className="bg-slate-950/50 p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all shadow-lg"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="w-12 h-12 rounded-full border-2 border-cyan-500/50"
+                    />
+                    <div>
+                      <h4 className="font-bold text-white">{t.name}</h4>
+                      <p className="text-xs text-slate-400">
+                        {t.role} di {t.company}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 fill-yellow-500 text-yellow-500"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-slate-200 font-body text-sm italic">
+                    "{t.content}"
+                  </p>
                 </div>
-                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 cursor-pointer">
-                  <Award className="w-5 h-5" />
-                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* === CTA Footer === */}
+        <section className="py-24 relative z-10 text-center">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fuchsia-600 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 p-12 rounded-[40px] shadow-2xl overflow-hidden">
+                {/* Inner Cosmic Texture */}
+                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]"></div>
+
+                <h2 className="text-4xl sm:text-5xl font-bold mb-6 relative z-10 text-white">
+                  Siap Diterima Kerja?
+                </h2>
+                <p className="text-slate-300 mb-8 max-w-xl mx-auto font-body relative z-10">
+                  Jangan tunda lagi karir impian Anda. Bangun resume profesional
+                  sekarang juga.
+                </p>
+                <button
+                  onClick={handleCTA}
+                  className="relative z-10 bg-white text-slate-950 px-12 py-5 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
+                >
+                  Mulai Buat Resume
+                </button>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div>
-              <h3 className="font-semibold mb-4">Produk</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Template
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Fitur
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Harga
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Contoh
-                  </a>
-                </li>
-              </ul>
+        {/* Footer Details */}
+        <footer className="py-12 bg-slate-950/50 border-t border-white/5 relative z-10">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-left">
+              <div className="col-span-1 md:col-span-1">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="p-1.5 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg">
+                    <FileText className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xl font-bold text-white">
+                    Resume Maker
+                  </span>
+                </div>
+                <p className="text-slate-500 leading-relaxed text-sm font-body">
+                  Membantu para pencari kerja menciptakan kesan pertama yang tak
+                  terlupakan melalui resume berkualitas tinggi.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-bold text-white mb-6">Produk</h3>
+                <ul className="space-y-3 text-slate-500 text-sm font-body">
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Template
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Fitur
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Harga
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Blog
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-white mb-6">Bantuan</h3>
+                <ul className="space-y-3 text-slate-500 text-sm font-body">
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Pusat Bantuan
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      FAQ
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Kontak
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Kebijakan
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-white mb-6">Perusahaan</h3>
+                <ul className="space-y-3 text-slate-500 text-sm font-body">
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Tentang Kami
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Karir
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Kebijakan Privasi
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Pendukung</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Pusat Bantuan
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Hubungi Kami
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Pertanyaan Yang Sering Diajukan
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Tutorial
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Perusahaan</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Tentang
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Karir
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Keamanan
-                  </a>
-                </li>
-              </ul>
+            <div className="border-t border-white/5 pt-8 text-center text-slate-600 text-sm font-body">
+              <p>
+                &copy; 2025 ResumeMaker. All rights reserved. | Made with ⚡️ by
+                Kelompok 4
+              </p>
             </div>
           </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>
-              &copy; 2025 ResumeMaker. Made with Kelompok 4 untuk Para
-              profesional.
-            </p>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
 
       {/* Auth Modal */}
       <Modal
@@ -587,7 +751,7 @@ const LandingPage = () => {
         }}
         hideHeader
       >
-        <div>
+        <div className="bg-slate-900 text-white rounded-lg">
           {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
           {currentPage === "signup" && (
             <SignUp setCurrentPage={setCurrentPage} />

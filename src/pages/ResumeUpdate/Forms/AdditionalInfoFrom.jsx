@@ -12,18 +12,20 @@ const AdditionalInfoFrom = ({
 }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">
         Informasi Tambahan
       </h2>
 
       {/* Languages Section */}
       <div className="mt-6">
-        <h3 className="text-sm font-semibold text-gray-700 mb-2">Bahasa</h3>
+        <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+          Bahasa
+        </h3>
         <div className="flex flex-col gap-4">
           {languages?.map((lang, index) => (
             <div
               key={index}
-              className="border border-gray-200 p-4 rounded-lg relative"
+              className="border border-slate-200 dark:border-white/10 p-4 rounded-lg relative"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                 <Input
@@ -36,7 +38,7 @@ const AdditionalInfoFrom = ({
                 />
 
                 <div>
-                  <label className="text-xs font-medium text-slate-600 mb-7 block">
+                  <label className="text-xs text-slate-700 font-semibold dark:text-slate-300 mb-7 block">
                     Presentase
                   </label>
                   <RatingInput
@@ -54,7 +56,7 @@ const AdditionalInfoFrom = ({
               {languages.length > 1 && (
                 <button
                   type="button"
-                  className="absolute top-3 right-3 text-sm text-red-600 hover:underline cursor-pointer"
+                  className="absolute top-3 right-3 text-sm text-red-400 hover:underline cursor-pointer"
                   onClick={() => removeArrayItem("languages", index)}
                 >
                   <Trash2 />
@@ -65,7 +67,7 @@ const AdditionalInfoFrom = ({
 
           <button
             type="button"
-            className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-100 text-purple-800 text-sm font-medium hover:bg-purple-200 cursor-pointer"
+            className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-900/30 text-purple-300 text-sm font-medium hover:bg-purple-900/50 cursor-pointer"
             onClick={() => addArrayItem("languages", { name: "", progress: 0 })}
           >
             <Plus /> Tambahkan Bahasa
@@ -75,7 +77,9 @@ const AdditionalInfoFrom = ({
 
       {/* Interests Section */}
       <div className="mt-8 mb-4">
-        <h3 className="text-sm font-semibold text-gray-700">Minat/Bakat</h3>
+        <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+          Minat/Bakat
+        </h3>
         <div className="flex flex-col">
           {interests?.map((interest, index) => (
             <div key={index} className="relative rounded-lg">
@@ -90,7 +94,7 @@ const AdditionalInfoFrom = ({
               {interests.length > 1 && (
                 <button
                   type="button"
-                  className="absolute top-6.5 right-3 text-sm text-red-600 hover:underline cursor-pointer"
+                  className="absolute top-6.5 right-3 text-sm text-red-400 hover:underline cursor-pointer"
                   onClick={() => removeArrayItem("interests", index)}
                 >
                   <Trash2 />
@@ -101,7 +105,7 @@ const AdditionalInfoFrom = ({
 
           <button
             type="button"
-            className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-100 text-purple-800 text-sm font-medium hover:bg-purple-200 cursor-pointer"
+            className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-900/30 text-purple-300 text-sm font-medium hover:bg-purple-900/50 cursor-pointer"
             onClick={() => addArrayItem("interests", "")}
           >
             <Plus /> Tambahkan Minat/Bakat

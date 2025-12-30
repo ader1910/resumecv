@@ -609,7 +609,7 @@ const EditResume = () => {
   return (
     <DashboardLayout>
       <div className="container mx-auto">
-        <div className="flex items-center justify-between gap-5 bg-white rounded-lg border border-purple-100 py-3 px-4 mb-4">
+        <div className="flex items-center justify-between gap-5 bg-slate-900 rounded-lg border border-white/10 py-3 px-4 mb-4">
           <TitleInput
             title={resumeData.title}
             setTitle={(value) =>
@@ -645,7 +645,7 @@ const EditResume = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="bg-white rounded-lg border border-purple-100 overflow-hidden">
+          <div className="bg-white dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-white/10 overflow-hidden shadow-sm">
             <StepProgress progress={progress} />
 
             {renderForm()}

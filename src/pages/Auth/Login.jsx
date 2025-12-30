@@ -77,10 +77,10 @@ const Login = ({ setCurrentPage }) => {
 
   return (
     <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">
+      <h3 className="text-lg font-semibold text-black dark:text-white">
         Selamat Datang Kembali
       </h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <p className="text-xs text-slate-700 dark:text-slate-400 mt-[5px] mb-6">
         Silakan masukkan detail Anda untuk masuk
       </p>
 
@@ -118,7 +118,7 @@ const Login = ({ setCurrentPage }) => {
           {isSubmitting ? "PLEASE WAIT..." : "LOGIN"}
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-[13px] text-slate-800 dark:text-slate-300 mt-3">
           Belum Memiliki Akun?{" "}
           <button
             className="font-medium text-primary underline cursor-pointer"

@@ -5,7 +5,7 @@ import Input from "../../../components/Inputs/Input";
 const ProfileInfoForm = ({ profileData, updateSection }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">Informasi Pribadi</h2>
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Informasi Pribadi</h2>
 
       <div className="mt-4">
         <ProfilePhotoSelector
@@ -35,7 +35,7 @@ const ProfileInfoForm = ({ profileData, updateSection }) => {
           />
 
           <div className="col-span-2 mt-3">
-            <label className="text-xs font-medium text-slate-600">
+            <label className="text-xs font-medium text-slate-700 font-semibold dark:text-slate-300">
               Ringkasan Tentang Diri Anda
             </label>
 

@@ -10,7 +10,7 @@ const EducationDetailsForm = ({
 }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-gray-900">
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">
         Riwayat Pendidikan
       </h2>
 
@@ -18,7 +18,7 @@ const EducationDetailsForm = ({
         {educationInfo.map((education, index) => (
           <div
             key={index}
-            className="border border-gray-200/80 p-4 rounded-lg relative"
+            className="border border-slate-200 dark:border-white/10 p-4 rounded-lg relative"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
@@ -63,7 +63,7 @@ const EducationDetailsForm = ({
             {educationInfo.length > 1 && (
               <button
                 type="button"
-                className="absolute top-3 right-3 text-sm text-red-600 hover:underline cursor-pointer"
+                className="absolute top-3 right-3 text-sm text-red-400 hover:underline cursor-pointer"
                 onClick={() => removeArrayItem(index)}
               >
                 <Trash2 />
@@ -74,7 +74,7 @@ const EducationDetailsForm = ({
 
         <button
           type="button"
-          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-100 text-purple-800 text-sm font-medium hover:bg-purple-200 cursor-pointer"
+          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-900/30 text-purple-300 text-sm font-medium hover:bg-purple-900/50 cursor-pointer"
           onClick={() =>
             addArrayItem({
               degree: "",

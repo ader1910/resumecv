@@ -43,7 +43,7 @@ const ProfilePhotoSelector = ({image, setImage, preview, setPreview}) => {
       />
 
       {!image ? (
-        <div className="w-20 h-20 flex items-center justify-center bg-purple-50 rounded-full relative cursor-pointer">
+        <div className="w-20 h-20 flex items-center justify-center bg-purple-50 dark:bg-slate-800 rounded-full relative cursor-pointer">
           <User className="text-4xl text-purple-500" />
 
           <button

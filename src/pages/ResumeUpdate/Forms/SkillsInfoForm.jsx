@@ -11,13 +11,13 @@ const SkillsInfoForm = ({
 }) => {
   return (
     <div className="px-5 pt-3">
-      <h2 className="text-lg font-semibold text-gray-900">Keahlian</h2>
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Keahlian</h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {skillsInfo.map((skill, index) => (
           <div
             key={index}
-            className="border border-gray-200/80 p-4 rounded-lg relative"
+            className="border border-slate-200 dark:border-white/10 p-4 rounded-lg relative"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
@@ -31,7 +31,7 @@ const SkillsInfoForm = ({
               />
 
               <div className="flex flex-col">
-                <label className="text-[13px] text-slate-800 mb-1">
+                <label className="text-[13px] text-slate-700 dark:text-slate-300 mb-1">
                   Presentase ({skill.progress / 20 || 0}/5)
                 </label>
                 <div className="mt-5">
@@ -49,7 +49,7 @@ const SkillsInfoForm = ({
             {skillsInfo.length > 1 && (
               <button
                 type="button"
-                className="absolute top-3 right-3 text-sm text-red-600 hover:underline cursor-pointer"
+                className="absolute top-3 right-3 text-sm text-red-400 hover:underline cursor-pointer"
                 onClick={() => removeArrayItem(index)}
               >
                 <Trash2 />
@@ -59,7 +59,7 @@ const SkillsInfoForm = ({
         ))}
 
         <button
-          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-100 text-purple-800 text-sm font-medium hover:bg-purple-200 cursor-pointer"
+          className="self-start flex items-center gap-2 px-4 py-2 rounded bg-purple-900/30 text-purple-300 text-sm font-medium hover:bg-purple-900/50 cursor-pointer"
           onClick={() =>
             addArrayItem({
               name: "",
