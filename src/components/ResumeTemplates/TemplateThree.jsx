@@ -48,7 +48,7 @@ const TemplateThree = ({ resumeData, colorPalette, containerWidth }) => {
   return (
     <div
       ref={resumeRef}
-      className="p-3 bg-white"
+      className="p-3 bg-white text-slate-950"
       style={{
         transform: containerWidth > 0 ? `scale(${scale})` : "none",
         transformOrigin: "top left",

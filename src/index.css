@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Plus Jakarta Sans", sans-serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Montserrat", sans-serif;
   --breakpoint-3xl: 1920px;
   --color-primary: #9328e7;
+  --color-accent-gold: #D4AF37;
   
   --animate-spin-slow: spin 20s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -20,15 +21,45 @@
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 
   body {
     background-color: #020617; 
+    color: #f8fafc;
     overflow-x: hidden;
   }
 }
 
 @layer utilities {
+  .glass-card {
+    background: rgba(2, 6, 23, 0.4); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-card:hover {
+    background: rgba(2, 6, 23, 0.6); 
+    border-color: rgba(34, 211, 238, 0.3); 
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .text-gradient-liquid {
+    background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   @keyframes text-shine {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
@@ -56,20 +87,21 @@
 }
 
 .input-box {
-  @apply w-full flex justify-between gap-3 text-sm text-slate-900 bg-slate-50 rounded px-4 py-3 mb-4 mt-1 border border-slate-200 outline-none focus-within:border-cyan-500 focus-within:ring-1 focus-within:ring-cyan-500/20 dark:bg-slate-800/50 dark:border-white/10 dark:text-slate-100;
+  @apply w-full flex justify-between gap-3 text-sm text-slate-100 bg-white/5 rounded-xl px-4 py-3 mb-4 mt-1 border border-white/10 outline-none focus-within:border-purple-500/50 focus-within:bg-white/10 transition-all duration-300;
 }
 
 .btn-primary {
-  @apply w-full text-sm font-medium text-white bg-gradient-to-r from-cyan-600 to-blue-600 shadow-lg shadow-cyan-600/20 p-[10px] rounded-md my-1 hover:shadow-xl hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 cursor-pointer;
+  @apply w-full text-sm font-semibold tracking-wide text-white bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 shadow-lg shadow-purple-900/20 p-[12px] rounded-xl my-1 hover:shadow-cyan-500/20 hover:scale-[1.02] transition-all duration-300 cursor-pointer border border-white/10;
 }
 
 .btn-small {
-  @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-gradient-to-r from-cyan-500/85 to-blue-700 px-5 py-1.5 rounded cursor-pointer;
+  @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-2 rounded-lg cursor-pointer transition-all duration-300 backdrop-blur-md;
 }
 
 .form-input {
-  @apply w-full text-sm text-slate-900 outline-none bg-slate-50 border border-slate-200 px-2.5 py-3 rounded-md mt-2 placeholder:text-slate-400 focus-within:border-cyan-500 dark:bg-slate-800/50 dark:border-white/10 dark:text-slate-100;
+  @apply w-full text-sm text-slate-100 outline-none bg-white/5 border border-white/10 px-4 py-3 rounded-xl mt-2 placeholder:text-slate-500 focus-within:border-purple-500/50 focus-within:bg-white/10 transition-all duration-300;
 }
+
 .btn-small-light {
-  @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/10 px-5 py-1.5 rounded cursor-pointer transition-colors duration-300;
+  @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-lg cursor-pointer transition-all duration-300;
 }

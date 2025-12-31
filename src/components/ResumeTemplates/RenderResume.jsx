@@ -9,40 +9,44 @@ const RenderResume = ({
   colorPalette,
   containerWidth,
 }) => {
-  switch (templateId) {
-    case "01":
-      return (
-        <TemplateOne
-          resumeData={resumeData}
-          colorPalette={colorPalette}
-          containerWidth={containerWidth}
-        />
-      );
-    case "02":
-      return (
-        <TemplateTwo
-          resumeData={resumeData}
-          colorPalette={colorPalette}
-          containerWidth={containerWidth}
-        />
-      );
-    case "03":
-      return (
-        <TemplateThree
-          resumeData={resumeData}
-          colorPalette={colorPalette}
-          containerWidth={containerWidth}
-        />
-      );
-    default:
-      return (
-        <TemplateOne
-          resumeData={resumeData}
-          colorPalette={colorPalette}
-          containerWidth={containerWidth}
-        />
-      );
-  }
+  const renderTemplate = () => {
+    switch (templateId) {
+      case "01":
+        return (
+          <TemplateOne
+            resumeData={resumeData}
+            colorPalette={colorPalette}
+            containerWidth={containerWidth}
+          />
+        );
+      case "02":
+        return (
+          <TemplateTwo
+            resumeData={resumeData}
+            colorPalette={colorPalette}
+            containerWidth={containerWidth}
+          />
+        );
+      case "03":
+        return (
+          <TemplateThree
+            resumeData={resumeData}
+            colorPalette={colorPalette}
+            containerWidth={containerWidth}
+          />
+        );
+      default:
+        return (
+          <TemplateOne
+            resumeData={resumeData}
+            colorPalette={colorPalette}
+            containerWidth={containerWidth}
+          />
+        );
+    }
+  };
+
+  return <div className="text-slate-950">{renderTemplate()}</div>;
 };
 
 export default RenderResume;

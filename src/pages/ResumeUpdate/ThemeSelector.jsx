@@ -140,46 +140,48 @@ const ThemeSelector = ({
   };
 
   return (
-    <div className="container mx-auto px-2 md:px-0">
-      <div className="flex items-center justify-between mb-5 mt-2">
-        <div className="flex items-center gap-3">
+    <div className="container mx-auto px-4 py-2">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-4">
           <Tabs
             tabs={TAB_DATA}
             activeTab={tabValue}
             setActiveTab={setTabValue}
           />
           {!templateRestrictions.isPremium && (
-            <div className="flex items-center gap-2">
-              <div className="bg-orange-900/30 text-orange-300 px-3 py-1 rounded-full text-sm font-semibold">
-                Basic Plan
+            <div className="flex items-center gap-2 ml-2">
+              <div className="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                Basic
               </div>
               <button
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1 rounded-full text-sm font-semibold transition-colors duration-200"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg shadow-purple-900/20"
                 onClick={handleUpgradeToPremium}
               >
-                Upgrade to Premium Rp999
+                Upgrade to Premium
               </button>
             </div>
           )}
           {templateRestrictions.isPremium && (
-            <div className="bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full text-sm font-semibold">
+            <div className="bg-purple-500/10 text-purple-400 border border-purple-500/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ml-2">
               Premium Plan
             </div>
           )}
         </div>
 
         <button
-          className="btn-small-light"
+          className="btn-primary !w-auto !py-2 !px-8 !my-0"
           onClick={() => handleThemeSelection()}
         >
-          <CircleCheckBig className="text-[16px]" />
-          Done
+          <span className="flex items-center gap-2">
+            <CircleCheckBig className="w-4 h-4" />
+            Done
+          </span>
         </button>
       </div>
 
-      <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-12 md:col-span-5 bg-transparent">
-          <div className="grid grid-cols-2 gap-5 max-h-[80vh] overflow-scroll custom-scrollbar md:pr-5">
+      <div className="grid grid-cols-12 gap-8">
+        <div className="col-span-12 lg:col-span-5">
+          <div className="grid grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto custom-scrollbar pr-2">
             {tabValue === "Templates" &&
               resumeTemplates.map((template, index) => {
                 const isLocked = isTemplateLocked(template.id);
@@ -187,7 +189,7 @@ const ThemeSelector = ({
                   <TemplateCard
                     key={`templates_${index}`}
                     thumbnailImg={template.thumbnailImg}
-                    isSelected={selectedTemplate?.index === index && !isLocked}
+                    isSelected={selectedTemplate?.theme === template.id && !isLocked}
                     isLocked={isLocked}
                     onSelect={() =>
                       setSelectedTemplate({ theme: template.id, index })
@@ -208,16 +210,21 @@ const ThemeSelector = ({
               ))}
           </div>
         </div>
-        <div
-          className="col-span-12 md:col-span-7 bg-transparent -mt-3"
-          ref={resumeRef}
-        >
-          <RenderResume
-            templateId={selectedTemplate?.theme || ""}
-            resumeData={resumeData || DUMMY_RESUME_DATA}
-            containerWidth={baseWidth}
-            colorPalette={selectedColorPalette?.colors || []}
-          />
+        
+        <div className="col-span-12 lg:col-span-7">
+          <div 
+            className="bg-slate-800/40 border border-white/5 rounded-2xl p-6 h-[70vh] overflow-hidden relative shadow-inner"
+            ref={resumeRef}
+          >
+            <div className="absolute inset-0 overflow-auto custom-scrollbar p-6">
+              <RenderResume
+                templateId={selectedTemplate?.theme || ""}
+                resumeData={resumeData || DUMMY_RESUME_DATA}
+                containerWidth={baseWidth - 48} // Account for padding
+                colorPalette={selectedColorPalette?.colors || []}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -229,16 +236,15 @@ export default ThemeSelector;
 const ColorPalette = ({ colors, isSelected, onSelect }) => {
   return (
     <div
-      className={`h-28 bg-slate-800 flex rounded-lg overflow-hidden border-2 ${
-        isSelected ? "border-purple-400" : "border-none"
-      }`}
+      className={`h-24 bg-slate-800 flex rounded-xl overflow-hidden border-2 transition-all cursor-pointer shadow-lg
+        ${isSelected ? "border-purple-500 scale-[0.98]" : "border-white/5 hover:border-white/20"}`}
+      onClick={onSelect}
     >
       {colors.map((color, index) => (
         <div
           key={`color_${index}`}
           className="flex-1"
-          style={{ backgroundColor: colors[index] }}
-          onClick={onSelect}
+          style={{ backgroundColor: color }}
         />
       ))}
     </div>

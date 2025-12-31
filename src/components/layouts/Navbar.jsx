@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between gap-5">
         <Link to='/dashboard'>
           <h2 className="text-lg md:text-xl font-medium text-slate-900 dark:text-white leading-5 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-600 dark:text-cyan-400" />
+            <FileText className="w-5 h-5 text-blue-600 dark:text-purple-400" />
             Resume Builder
           </h2>
         </Link>

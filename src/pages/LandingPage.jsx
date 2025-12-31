@@ -94,19 +94,19 @@ const LandingPage = () => {
 
   const features = [
     {
-      icon: <Edit3 className="w-8 h-8 text-cyan-400" />,
+      icon: <Edit3 className="w-8 h-8 text-purple-400" />,
       title: "Smart Editor",
       description:
         "Antarmuka seret dan lepas yang intuitif dengan pratinjau waktu nyata dan saran bertenaga AI.",
     },
     {
-      icon: <Eye className="w-8 h-8 text-fuchsia-400" />,
+      icon: <Eye className="w-8 h-8 text-blue-400" />,
       title: "Live Preview",
       description:
         "Lihat perubahan Anda secara instan dengan teknologi pratinjau langsung canggih kami.",
     },
     {
-      icon: <Download className="w-8 h-8 text-blue-400" />,
+      icon: <Download className="w-8 h-8 text-fuchsia-400" />,
       title: "Opsi Ekspor",
       description:
         "Unduh dalam berbagai format: PDF, Word, atau bagikan dengan tautan khusus.",
@@ -124,12 +124,38 @@ const LandingPage = () => {
         "Data Anda dienkripsi dan aman. Kami tidak pernah membagikan informasi pribadi Anda.",
     },
     {
-      icon: <Smartphone className="w-8 h-8 text-violet-400" />,
+      icon: <Smartphone className="w-8 h-8 text-indigo-400" />,
       title: "Ramah Seluler",
       description:
         "Edit dan pratinjau resume Anda di perangkat apa pun, di mana saja, kapan saja.",
     },
   ];
+
+  <div>
+    <h3 className="font-bold text-white mb-6">Produk</h3>
+    <ul className="space-y-3 text-slate-500 text-sm font-body">
+      <li>
+        <a href="#" className="hover:text-purple-400 transition-colors">
+          Template
+        </a>
+      </li>
+      <li>
+        <a href="#" className="hover:text-purple-400 transition-colors">
+          Fitur
+        </a>
+      </li>
+      <li>
+        <a href="#" className="hover:text-purple-400 transition-colors">
+          Harga
+        </a>
+      </li>
+      <li>
+        <a href="#" className="hover:text-cyan-400 transition-colors">
+          Blog
+        </a>
+      </li>
+    </ul>
+  </div>;
 
   const testimonials = [
     {
@@ -162,14 +188,14 @@ const LandingPage = () => {
   ];
 
   const stats = [
-    { number: "50K+", label: "Resume Dibuat" },
-    { number: "95%", label: "Tingkat Keberhasilan" },
-    { number: "4.9/5", label: "Rating Pengguna" },
-    { number: "24/7", label: "Dukungan" },
+    { number: "50K+", label: "Professional Resumes" },
+    { number: "98%", label: "ATS Pass Rate" },
+    { number: "4.9/5", label: "Elite Satisfaction" },
+    { number: "100+", label: "Premium Themes" },
   ];
 
   return (
-    <div className="w-full min-h-screen bg-slate-950 font-display text-white selection:bg-cyan-500/30 overflow-x-hidden relative py-4 lg:py-8">
+    <div className="w-full min-h-screen bg-slate-950 font-display text-white selection:bg-purple-500/30 overflow-x-hidden relative py-4 lg:py-8">
       {/* === Liquid 3D Background === */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <LiquidEther
@@ -192,10 +218,10 @@ const LandingPage = () => {
                 className="flex items-center gap-3 cursor-pointer group"
                 onClick={() => navigate("/")}
               >
-                <div className="relative p-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_25px_rgba(6,182,212,0.6)] group-hover:shadow-[0_0_40px_rgba(6,182,212,0.8)] transition-all duration-300">
+                <div className="relative p-2 rounded-xl bg-gradient-to-br from-cyan-600 via-blue-600 to-purple-600 shadow-[0_0_25px_rgba(147,40,231,0.5)] group-hover:shadow-[0_0_40px_rgba(147,40,231,0.8)] transition-all duration-300">
                   <FileText className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-200 transition-all">
+                <span className="text-xl font-bold tracking-tight text-white group-hover:text-purple-200 transition-all">
                   ResumeMaker
                 </span>
               </div>
@@ -204,7 +230,7 @@ const LandingPage = () => {
               <div className="flex items-center gap-4">
                 <button
                   onClick={toggleTheme}
-                  className="p-2.5 rounded-full bg-slate-800 border border-white/10 hover:bg-slate-700 hover:border-cyan-500/50 text-slate-200 hover:text-cyan-300 transition-all duration-300"
+                  className="p-2.5 rounded-full bg-slate-800 border border-white/10 hover:bg-slate-700 hover:border-purple-500/50 text-slate-200 hover:text-purple-300 transition-all duration-300"
                 >
                   {isDarkMode ? (
                     <Sun className="w-5 h-5" />
@@ -220,7 +246,7 @@ const LandingPage = () => {
                     className="relative group overflow-hidden px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300"
                     onClick={() => setOpenAuthModal(true)}
                   >
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-cyan-500 opacity-80 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 opacity-90 group-hover:opacity-100 transition-opacity"></span>
                     <span className="relative text-white z-10 flex items-center gap-2">
                       Mulai Gratis <ArrowRight className="w-4 h-4" />
                     </span>
@@ -245,14 +271,14 @@ const LandingPage = () => {
                   </span>
                 </div>
 
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] text-shadow-sm">
                   Wujudkan <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+                  <span className="text-gradient-liquid drop-shadow-md">
                     Impian Karirmu
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed font-body font-light">
+                <p className="text-lg sm:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed font-body font-light text-shadow-sm">
                   Buat resume profesional dalam hitungan menit dengan teknologi
                   AI. Desain modern, tata letak otomatis, dan hasil yang memukau
                   perekrut.
@@ -261,7 +287,7 @@ const LandingPage = () => {
                 <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mb-16 justify-center lg:justify-start">
                   <button
                     onClick={handleCTA}
-                    className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group"
+                    className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800/80 border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group backdrop-blur-sm"
                   >
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600/40 to-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <span className="relative flex items-center justify-center gap-2">
@@ -273,7 +299,7 @@ const LandingPage = () => {
                   {user && (
                     <button
                       onClick={() => navigate("/dashboard")}
-                      className="px-8 py-4 rounded-full font-semibold text-base text-slate-300 border border-white/10 hover:bg-white/5 transition-all hover:text-white"
+                      className="px-8 py-4 rounded-full font-semibold text-base text-slate-300 border border-white/10 hover:bg-white/5 transition-all hover:text-white backdrop-blur-sm bg-slate-900/50"
                     >
                       Lihat Template
                     </button>
@@ -284,10 +310,10 @@ const LandingPage = () => {
                 <div className="flex items-center justify-center lg:justify-start gap-8 sm:gap-10 border-t border-white/10 pt-8 w-full">
                   {stats.map((stat, index) => (
                     <div key={index} className="flex flex-col">
-                      <span className="text-2xl lg:text-3xl font-bold text-white mb-1">
+                      <span className="text-3xl lg:text-4xl font-display font-medium text-white mb-1 text-shadow-sm">
                         {stat.number}
                       </span>
-                      <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">
+                      <span className="text-[10px] text-white uppercase tracking-[0.2em] font-semibold text-shadow-sm">
                         {stat.label}
                       </span>
                     </div>
@@ -312,7 +338,7 @@ const LandingPage = () => {
                   }}
                 >
                   {/* === THE RESUME CARD === */}
-                  <div className="w-[300px] sm:w-[360px] h-[450px] sm:h-[540px] bg-white rounded-2xl shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border border-white/40 overflow-hidden relative flex flex-col">
+                  <div className="w-[300px] sm:w-[360px] h-[450px] sm:h-[540px] bg-white rounded-2xl shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border border-white/40 overflow-hidden relative flex flex-col text-slate-950">
                     {/* Glass Reflection Shine */}
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/60 via-transparent to-black/5 opacity-40 z-20 pointer-events-none"></div>
 
@@ -433,7 +459,7 @@ const LandingPage = () => {
               <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-white">
                 Fitur Unggulan
               </h2>
-              <p className="text-slate-400 font-body max-w-2xl mx-auto text-lg">
+              <p className="text-white-400 font-body max-w-2xl mx-auto text-lg">
                 Semua yang Anda butuhkan untuk membuat resume kelas dunia.
               </p>
             </div>
@@ -442,7 +468,7 @@ const LandingPage = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group p-8 rounded-3xl bg-slate-900 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-800 transition-all duration-300 relative overflow-hidden shadow-lg hover:shadow-cyan-500/10"
+                  className="glass-card group p-8 relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all"></div>
 
@@ -474,10 +500,7 @@ const LandingPage = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {testimonials.map((t, i) => (
-                <div
-                  key={i}
-                  className="bg-slate-950 p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all shadow-lg"
-                >
+                <div key={i} className="glass-card p-8">
                   <div className="flex items-center gap-4 mb-6">
                     <img
                       src={t.image}
@@ -513,7 +536,7 @@ const LandingPage = () => {
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fuchsia-600 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-              <div className="relative bg-slate-900 border border-white/10 p-12 rounded-[40px] shadow-2xl overflow-hidden">
+              <div className="glass-card relative p-12 !rounded-[40px] overflow-hidden">
                 {/* Inner Cosmic Texture */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]"></div>
 
