@@ -35,7 +35,7 @@ const ProfileInfoForm = ({ profileData, updateSection }) => {
           />
 
           <div className="col-span-2 mt-3">
-            <label className="text-xs font-medium text-slate-700 font-semibold dark:text-slate-300">
+            <label className="text-xs text-slate-700 font-semibold dark:text-slate-300">
               Ringkasan Tentang Diri Anda
             </label>
 

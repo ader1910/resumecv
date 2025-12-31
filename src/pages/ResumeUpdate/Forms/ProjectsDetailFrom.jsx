@@ -34,7 +34,7 @@ const ProjectsDetailFrom = ({
               </div>
 
               <div className="col-span-2">
-                <label className="text-xs font-medium text-slate-700 font-semibold dark:text-slate-300">
+                <label className="text-xs text-slate-700 font-semibold dark:text-slate-300">
                   Keterangan
                 </label>
                 <textarea

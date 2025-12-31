@@ -10,7 +10,9 @@ const WorkExperienceForm = ({
 }) => {
   return (
     <div className="px-5 pt-5">
-      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">Pengalaman Kerja</h2>
+      <h2 className="text-lg font-semibold text-slate-800 dark:text-white">
+        Pengalaman Kerja
+      </h2>
 
       <div className="mt-4 flex flex-col gap-4 mb-3">
         {workExperience.map((experience, index) => (
@@ -61,7 +63,7 @@ const WorkExperienceForm = ({
             </div>
 
             <div className="mt-4">
-              <label className="text-xs font-medium text-slate-700 font-semibold dark:text-slate-300">
+              <label className="text-xs text-slate-700 font-semibold dark:text-slate-300">
                 Keterangan
               </label>
               <textarea
