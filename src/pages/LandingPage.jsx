@@ -312,7 +312,7 @@ const LandingPage = () => {
             {" "}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* --- Left Column: Content --- */}
-              <div className="text-left flex flex-col items-start">
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-cyan-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 backdrop-blur-md shadow-lg animate-float">
                   <Sparkles className="w-4 h-4" />
                   <span className="tracking-wide">
@@ -333,13 +333,13 @@ const LandingPage = () => {
                   perekrut.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mb-16">
+                <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mb-16 justify-center lg:justify-start">
                   <button
                     onClick={handleCTA}
                     className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800/50 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group"
                   >
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600/40 to-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <span className="relative flex items-center gap-2">
+                    <span className="relative flex items-center justify-center gap-2">
                       Buat Resume Sekarang{" "}
                       <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -356,7 +356,7 @@ const LandingPage = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-10 border-t border-white/10 pt-8 w-full">
+                <div className="flex items-center justify-center lg:justify-start gap-8 sm:gap-10 border-t border-white/10 pt-8 w-full">
                   {stats.map((stat, index) => (
                     <div key={index} className="flex flex-col">
                       <span className="text-2xl lg:text-3xl font-bold text-white mb-1">
@@ -593,17 +593,18 @@ const LandingPage = () => {
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]"></div>
 
                 <h2 className="text-4xl sm:text-5xl font-bold mb-6 relative z-10 text-white">
-                  Siap Diterima Kerja?
+                  Wujudkan Karir Impianmu Mulai Hari Ini{" "}
                 </h2>
                 <p className="text-slate-300 mb-8 max-w-xl mx-auto font-body relative z-10">
-                  Jangan tunda lagi karir impian Anda. Bangun resume profesional
-                  sekarang juga.
+                  Persaingan kerja semakin ketat. Pastikan resume Anda lolos
+                  seleksi sistem ATS dan tampil menonjol di mata HRD. Bangun
+                  citra profesional Anda sekarang juga.
                 </p>
                 <button
                   onClick={handleCTA}
                   className="relative z-10 bg-white text-slate-950 px-12 py-5 rounded-full font-bold text-lg hover:scale-105 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
                 >
-                  Mulai Buat Resume
+                  Buat CV Profesional
                 </button>
               </div>
             </div>

@@ -609,37 +609,42 @@ const EditResume = () => {
   return (
     <DashboardLayout>
       <div className="container mx-auto">
-        <div className="flex items-center justify-between gap-5 bg-slate-900 rounded-lg border border-white/10 py-3 px-4 mb-4">
-          <TitleInput
-            title={resumeData.title}
-            setTitle={(value) =>
-              setResumeData((prevState) => ({
-                ...prevState,
-                title: value,
-              }))
-            }
-          />
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-slate-900 rounded-lg border border-white/10 py-4 px-4 md:px-6 mb-6 shadow-lg">
+          <div className="w-full md:flex-1">
+            <TitleInput
+              title={resumeData.title}
+              setTitle={(value) =>
+                setResumeData((prevState) => ({
+                  ...prevState,
+                  title: value,
+                }))
+              }
+            />
+          </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full md:w-auto justify-end">
             <button
-              className="btn-small-light"
+              className="btn-small-light flex-1 sm:flex-none justify-center"
               onClick={() => setOpenThemeSelector(true)}
             >
               <Palette className="text-[16px]" />
-              <span className="hidden md:block">Change Theme</span>
-            </button>
-
-            <button className="btn-small-light" onClick={handleDeleteResume}>
-              <Trash2 className="text-[16px]" />
-              <span className="hidden md:block">Delete</span>
+              <span className="hidden sm:block">Theme</span>
             </button>
 
             <button
-              className="btn-small-light"
+              className="btn-small-light flex-1 sm:flex-none justify-center text-rose-500 hover:text-rose-600 hover:bg-rose-50"
+              onClick={handleDeleteResume}
+            >
+              <Trash2 className="text-[16px]" />
+              <span className="hidden sm:block">Delete</span>
+            </button>
+
+            <button
+              className="btn-small-light flex-1 sm:flex-none justify-center text-emerald-500 hover:text-emerald-600 hover:bg-emerald-50"
               onClick={() => setOpenPreviewModal(true)}
             >
               <Download className="text-[16px]" />
-              <span className="hidden md:block">Preview & Download</span>
+              <span className="hidden sm:block">Preview</span>
             </button>
           </div>
         </div>

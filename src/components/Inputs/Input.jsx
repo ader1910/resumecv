@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-const Input = ({ value, onChange, label, placeholder, type }) => {
+const Input = ({ value, onChange, label, placeholder, type, className }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
@@ -17,7 +17,7 @@ const Input = ({ value, onChange, label, placeholder, type }) => {
             type == "password" ? (showPassword ? "text" : "password") : type
           }
           placeholder={placeholder}
-          className="w-full bg-transparent outline-none placeholder:text-slate-400 dark:placeholder:text-slate-500"
+          className={`w-full bg-transparent outline-none placeholder:text-slate-400 dark:placeholder:text-slate-500 ${className || ""}`}
           value={value}
           onChange={(e) => onChange(e)}
         />

@@ -42,6 +42,7 @@ const WorkExperienceForm = ({
               <Input
                 label="Mulai Bulan"
                 type="month"
+                className="[&::-webkit-calendar-picker-indicator]:invert"
                 value={experience.startDate || ""}
                 onChange={({ target }) =>
                   updateArrayItem(index, "startDate", target.value)
@@ -51,6 +52,7 @@ const WorkExperienceForm = ({
               <Input
                 label="Sampai Bulan"
                 type="month"
+                className="[&::-webkit-calendar-picker-indicator]:invert"
                 value={experience.endDate || ""}
                 onChange={({ target }) =>
                   updateArrayItem(index, "endDate", target.value)

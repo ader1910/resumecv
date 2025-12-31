@@ -44,6 +44,7 @@ const EducationDetailsForm = ({
               <Input
                 label="Tanggal Mulai"
                 type="month"
+                className="[&::-webkit-calendar-picker-indicator]:invert"
                 value={education.startDate || ""}
                 onChange={({ target }) =>
                   updateArrayItem(index, "startDate", target.value)
@@ -53,6 +54,7 @@ const EducationDetailsForm = ({
               <Input
                 label="Tanggal Akhir"
                 type="month"
+                className="[&::-webkit-calendar-picker-indicator]:invert"
                 value={education.endDate || ""}
                 onChange={({ target }) =>
                   updateArrayItem(index, "endDate", target.value)

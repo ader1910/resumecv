@@ -28,8 +28,8 @@ const ThemeSelector = ({
   const [templateRestrictions, setTemplateRestrictions] = useState({
     availableTemplates: [],
     allTemplates: [],
-    subscriptionPlan: 'basic',
-    isPremium: false
+    subscriptionPlan: "basic",
+    isPremium: false,
   });
 
   const [tabValue, setTabValue] = useState("Templates");
@@ -83,7 +83,7 @@ const ThemeSelector = ({
   // Check if template is locked
   const isTemplateLocked = (templateId) => {
     // Template '01' is always available for basic users
-    if (templateId === '01') {
+    if (templateId === "01") {
       return false;
     }
     // Templates '02' and '03' are locked for basic users
@@ -109,27 +109,33 @@ const ThemeSelector = ({
   const handleUpgradeToPremium = async () => {
     try {
       toast.loading("Creating order...", { id: "payment" });
-      
+
       // Create order
       const orderData = await paymentService.createOrder("premium");
-      
+
       toast.loading("Opening payment gateway...", { id: "payment" });
-      
+
       // Initiate payment
-      const paymentResult = await paymentService.initiatePayment(orderData, user);
-      
-      toast.success("Payment successful! Welcome to Premium!", { id: "payment" });
-      
+      const paymentResult = await paymentService.initiatePayment(
+        orderData,
+        user
+      );
+
+      toast.success("Payment successful! Welcome to Premium!", {
+        id: "payment",
+      });
+
       // Refresh user profile to update subscription plan
       await refreshUser();
-      
+
       // Refresh template restrictions
       const response = await axiosInstance.get(API_PATHS.AUTH.TEMPLATES);
       setTemplateRestrictions(response.data);
-      
     } catch (error) {
       console.error("Payment error:", error);
-      toast.error(error.message || "Payment failed. Please try again.", { id: "payment" });
+      toast.error(error.message || "Payment failed. Please try again.", {
+        id: "payment",
+      });
     }
   };
 
@@ -137,17 +143,21 @@ const ThemeSelector = ({
     <div className="container mx-auto px-2 md:px-0">
       <div className="flex items-center justify-between mb-5 mt-2">
         <div className="flex items-center gap-3">
-          <Tabs tabs={TAB_DATA} activeTab={tabValue} setActiveTab={setTabValue} />
+          <Tabs
+            tabs={TAB_DATA}
+            activeTab={tabValue}
+            setActiveTab={setTabValue}
+          />
           {!templateRestrictions.isPremium && (
             <div className="flex items-center gap-2">
               <div className="bg-orange-900/30 text-orange-300 px-3 py-1 rounded-full text-sm font-semibold">
                 Basic Plan
               </div>
-              <button 
+              <button
                 className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-1 rounded-full text-sm font-semibold transition-colors duration-200"
                 onClick={handleUpgradeToPremium}
               >
-                Upgrade to Premium ₹999
+                Upgrade to Premium Rp999
               </button>
             </div>
           )}
@@ -198,7 +208,10 @@ const ThemeSelector = ({
               ))}
           </div>
         </div>
-        <div className="col-span-12 md:col-span-7 bg-transparent -mt-3" ref={resumeRef}>
+        <div
+          className="col-span-12 md:col-span-7 bg-transparent -mt-3"
+          ref={resumeRef}
+        >
           <RenderResume
             templateId={selectedTemplate?.theme || ""}
             resumeData={resumeData || DUMMY_RESUME_DATA}
