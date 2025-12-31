@@ -5,6 +5,7 @@ import SignUp from "./Auth/SignUp";
 import Modal from "../components/Modal";
 import { UserContext } from "../context/userContext";
 import ProfileInfoCard from "../components/Cards/ProfileInfoCard";
+import LiquidEther from "../components/LiquidEther";
 import {
   Edit3,
   Download,
@@ -169,53 +170,19 @@ const LandingPage = () => {
 
   return (
     <div className="w-full min-h-screen bg-slate-950 font-display text-white selection:bg-cyan-500/30 overflow-x-hidden relative py-4 lg:py-8">
-      {/* === Cosmic Background Layers (Liquid Plasma & Vortex) === */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* 1. Deep Space Base */}
-        <div className="absolute inset-0 bg-slate-950"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0f172a] via-[#020617] to-black opacity-90"></div>
-
-        {/* 2. The Spiral Vortex (Spinning) */}
-        <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] opacity-30 animate-[spin_100s_linear_infinite] mix-blend-screen">
-          <div className="w-full h-full bg-[conic-gradient(from_0deg_at_50%_50%,_transparent_0deg,_#3b82f6_60deg,_transparent_120deg,_#d946ef_180deg,_transparent_240deg,_#3b82f6_300deg,_transparent_360deg)] blur-[60px]"></div>
-        </div>
-
-        {/* 3. Liquid Neon Plasma Blobs */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Electric Blue Blob */}
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-
-          {/* Bright Magenta Blob */}
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-
-          {/* Vivid Purple Blob */}
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-          {/* Center Cyan Highlight */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[100px] mix-blend-screen animate-pulse"></div>
-        </div>
-
-        {/* 4. Starry Sky (High Density) */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.07] mix-blend-overlay"></div>
-        {/* Hand-placed bright stars for "cinematic" look */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 1}px`,
-              height: `${Math.random() * 2 + 1}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: Math.random() * 0.7 + 0.3,
-            }}
-          ></div>
-        ))}
+      {/* === Liquid 3D Background === */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <LiquidEther
+          colors={["#0f172a", "#1e1b4b", "#312e81", "#020617"]}
+          mouseForce={44}
+          cursorSize={140}
+          viscous={20}
+          autoDemo={true}
+        />
       </div>
 
-      {/* === MAIN FLOATING GLASS CARD CONTAINER === */}
-      <div className="relative z-10 max-w-[1400px] mx-auto rounded-[40px] overflow-hidden border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl ring-1 ring-white/5">
+      {/* === MAIN CONTAINER (No Glass) === */}
+      <div className="relative z-10 max-w-[1400px] mx-auto overflow-hidden">
         {/* === Header === */}
         <header className="absolute top-0 left-0 w-full z-50 transition-all duration-300">
           <div className="container mx-auto px-6 lg:px-12 py-6">
@@ -237,7 +204,7 @@ const LandingPage = () => {
               <div className="flex items-center gap-4">
                 <button
                   onClick={toggleTheme}
-                  className="p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/50 text-slate-200 hover:text-cyan-300 transition-all duration-300 backdrop-blur-md"
+                  className="p-2.5 rounded-full bg-slate-800 border border-white/10 hover:bg-slate-700 hover:border-cyan-500/50 text-slate-200 hover:text-cyan-300 transition-all duration-300"
                 >
                   {isDarkMode ? (
                     <Sun className="w-5 h-5" />
@@ -266,54 +233,12 @@ const LandingPage = () => {
 
         {/* === Hero Section (Split Layout) === */}
         <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 lg:px-12 overflow-hidden">
-          {/* Decorative Floating Lines (Glowing Neon) */}
-          <svg
-            className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 mix-blend-screen opacity-60"
-            viewBox="0 0 1440 800"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Line 1: Electric Blue Flow */}
-            <path
-              d="M-100 600 C 200 400, 600 900, 1540 300"
-              stroke="url(#paint_glow_1)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              className="animate-energy-flow"
-              style={{ filter: "drop-shadow(0 0 8px #3b82f6)" }}
-            />
-            {/* Line 2: Magenta Pulse */}
-            <path
-              d="M-100 300 C 300 700, 900 200, 1540 600"
-              stroke="url(#paint_glow_2)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              className="animate-energy-flow"
-              style={{
-                animationDelay: "2s",
-                filter: "drop-shadow(0 0 8px #d946ef)",
-              }}
-            />
-            <defs>
-              <linearGradient id="paint_glow_1" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0" />
-                <stop offset="50%" stopColor="#3b82f6" stopOpacity="1" />
-                <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
-              </linearGradient>
-              <linearGradient id="paint_glow_2" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#d946ef" stopOpacity="0" />
-                <stop offset="50%" stopColor="#d946ef" stopOpacity="1" />
-                <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
-
           <div className="container mx-auto relative z-10">
             {" "}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* --- Left Column: Content --- */}
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-cyan-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 backdrop-blur-md shadow-lg animate-float">
+                <div className="inline-flex items-center gap-2 bg-slate-900 border border-white/10 text-cyan-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 shadow-lg animate-float">
                   <Sparkles className="w-4 h-4" />
                   <span className="tracking-wide">
                     AI-Powered Resume Builder
@@ -336,7 +261,7 @@ const LandingPage = () => {
                 <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mb-16 justify-center lg:justify-start">
                   <button
                     onClick={handleCTA}
-                    className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800/50 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group"
+                    className="relative px-8 py-4 rounded-full font-bold text-base text-white bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:-translate-y-1 overflow-hidden group"
                   >
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-600/40 to-blue-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <span className="relative flex items-center justify-center gap-2">
@@ -387,7 +312,7 @@ const LandingPage = () => {
                   }}
                 >
                   {/* === THE RESUME CARD === */}
-                  <div className="w-[300px] sm:w-[360px] h-[450px] sm:h-[540px] bg-white/95 backdrop-blur-2xl rounded-2xl shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border border-white/40 overflow-hidden relative flex flex-col">
+                  <div className="w-[300px] sm:w-[360px] h-[450px] sm:h-[540px] bg-white rounded-2xl shadow-[30px_30px_60px_rgba(0,0,0,0.5)] border border-white/40 overflow-hidden relative flex flex-col">
                     {/* Glass Reflection Shine */}
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/60 via-transparent to-black/5 opacity-40 z-20 pointer-events-none"></div>
 
@@ -517,11 +442,11 @@ const LandingPage = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="group p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-800/60 transition-all duration-300 backdrop-blur-md relative overflow-hidden shadow-lg hover:shadow-cyan-500/10"
+                  className="group p-8 rounded-3xl bg-slate-900 border border-white/5 hover:border-cyan-500/30 hover:bg-slate-800 transition-all duration-300 relative overflow-hidden shadow-lg hover:shadow-cyan-500/10"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all"></div>
 
-                  <div className="mb-6 inline-block p-4 rounded-2xl bg-slate-900 border border-white/10 shadow-lg group-hover:scale-110 group-hover:shadow-cyan-500/20 transition-all duration-300">
+                  <div className="mb-6 inline-block p-4 rounded-2xl bg-slate-950 border border-white/10 shadow-lg group-hover:scale-110 group-hover:shadow-cyan-500/20 transition-all duration-300">
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-white group-hover:text-cyan-300 transition-colors">
@@ -537,7 +462,7 @@ const LandingPage = () => {
         </section>
 
         {/* === Testimonials === */}
-        <section className="py-24 relative z-10 bg-slate-900/30 border-y border-white/5">
+        <section className="py-24 relative z-10 bg-slate-900 border-y border-white/5">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-white">
@@ -551,7 +476,7 @@ const LandingPage = () => {
               {testimonials.map((t, i) => (
                 <div
                   key={i}
-                  className="bg-slate-950/50 p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all shadow-lg"
+                  className="bg-slate-950 p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all shadow-lg"
                 >
                   <div className="flex items-center gap-4 mb-6">
                     <img
@@ -588,7 +513,7 @@ const LandingPage = () => {
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-fuchsia-600 blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 p-12 rounded-[40px] shadow-2xl overflow-hidden">
+              <div className="relative bg-slate-900 border border-white/10 p-12 rounded-[40px] shadow-2xl overflow-hidden">
                 {/* Inner Cosmic Texture */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]"></div>
 
@@ -612,7 +537,7 @@ const LandingPage = () => {
         </section>
 
         {/* Footer Details */}
-        <footer className="py-12 bg-slate-950/50 border-t border-white/5 relative z-10">
+        <footer className="py-12 bg-slate-950 border-t border-white/5 relative z-10">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-left">
               <div className="col-span-1 md:col-span-1">
