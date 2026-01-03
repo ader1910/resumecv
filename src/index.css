@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -6,8 +6,8 @@
   --font-body: "Montserrat", sans-serif;
   --breakpoint-3xl: 1920px;
   --color-primary: #9328e7;
-  --color-accent-gold: #D4AF37;
-  
+  --color-accent-gold: #d4af37;
+
   --animate-spin-slow: spin 20s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-blob: blob 7s infinite;
@@ -18,14 +18,19 @@
   html {
     font-family: var(--font-body);
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
 
   body {
-    background-color: #020617; 
+    background-color: #020617;
     color: #f8fafc;
     overflow-x: hidden;
   }
@@ -33,24 +38,24 @@
 
 @layer utilities {
   .glass-card {
-    background: rgba(2, 6, 23, 0.4); 
+    background: rgba(2, 6, 23, 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     border-radius: 24px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .glass-card:hover {
-    background: rgba(2, 6, 23, 0.6); 
-    border-color: rgba(34, 211, 238, 0.3); 
+    background: rgba(2, 6, 23, 0.6);
+    border-color: rgba(34, 211, 238, 0.3);
     box-shadow: 0 0 40px rgba(34, 211, 238, 0.1);
     transform: translateY(-4px);
   }
 
   .text-shadow-sm {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .text-gradient-liquid {
@@ -61,25 +66,42 @@
   }
 
   @keyframes text-shine {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   @keyframes energy {
-    0% { stroke-dashoffset: 1000; opacity: 0; }
-    50% { opacity: 1; }
-    100% { stroke-dashoffset: 0; opacity: 0; }
+    0% {
+      stroke-dashoffset: 1000;
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0;
+    }
   }
 
   .animate-text-shine {
     animation: text-shine 3s ease-in-out infinite alternate;
   }
-  
+
   .animate-energy-flow {
     stroke-dasharray: 500;
     animation: energy 4s linear infinite;
