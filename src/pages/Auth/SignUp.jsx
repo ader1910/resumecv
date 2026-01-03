@@ -67,7 +67,7 @@ const SignUp = ({ setCurrentPage }) => {
       setVerificationSent(true);
       setRegisteredEmail(email);
       setInfo(
-        "We've sent a verification link to your email. Please verify to log in."
+        "Kami telah mengirimkan tautan verifikasi ke email Anda. Harap verifikasi untuk masuk.."
       );
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -104,7 +104,7 @@ const SignUp = ({ setCurrentPage }) => {
       </h3>
       <p className="text-xs text-slate-700 dark:text-slate-400 mt-[5px] mb-6">
         {verificationSent
-          ? "Please verify your email address to continue."
+          ? "Harap verifikasi alamat email Anda untuk melanjutkan."
           : "Bergabunglah dengan kami dengan memasukkan detail Anda di bawah ini."}
       </p>
 
@@ -161,7 +161,7 @@ const SignUp = ({ setCurrentPage }) => {
         <div>
           <div className="bg-purple-50 border border-purple-200 text-purple-800 text-sm p-3 rounded mb-3">
             {info ||
-              "Kami telah mengirimkan tautan verifikasi ke email Anda. Mohon verifikasi untuk masuk."}
+              "Kami telah mengirimkan tautan verifikasi ke email Anda. Mohon verifikasi untuk masuk. Klik link Login dibawah"}
           </div>
           <button
             type="button"
